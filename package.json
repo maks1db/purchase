@@ -1,12 +1,13 @@
 {
-  "name": "react-start-app",
+  "name": "purchase",
   "version": "0.0.1",
   "description": "React start app",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --content-base public --debug --hot --output-pathinfo --watch --inline --port 8090",
     "build": "NODE_ENV=production webpack -p",
-    "dev": "NODE_ENV=development src/js/backend/index.js"
+    "dev": "NODE_ENV=dev node app.js",
+    "devinit": "NODE_ENV=dev src/js/backend/database/init.js"
   },
   "dependencies": {
     "array-sort": "^0.1.2",
@@ -22,8 +23,10 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "sequelize": "4.1.0",
-    "mysql": "2.13.0"
+    "mysql": "2.13.0",
+    "squel": "5.10.0",
+    "express": "4.15.3",
+    "body-parser": "^1.17.2"
   },
   "devDependencies": {
     "babel": "~6.5.2",
