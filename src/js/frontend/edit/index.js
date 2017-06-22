@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setTitle } from '../actions';
 import If from '../directives/if';
 import Save from '../activeButtonsComponents/Save.jsx';
+import Input from './InputComponent.jsx';
 
 function mapStateToProps(state){
     return {
@@ -32,6 +33,7 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
+            <Input />
             <Save {...If(this.state.modify, {secondary:true}, {primary:true})} />    
         </div>
         );
