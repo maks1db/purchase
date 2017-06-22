@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReduxToastr from 'react-redux-toastr';
 import Main from './main';
+import Edit from './edit';
 import store from './store';
 
 import 'react-redux-toastr/src/styles/index.scss';
@@ -25,6 +26,7 @@ class App extends React.Component{
                         <Router history={browserHistory}>   
                             <Route path="/" component={Layout}>
                                 <IndexRoute component={Main}/> 
+                                <Route path="/create" component={Edit} />
                             </Route>        
                         </Router>                        
                     </MuiThemeProvider>

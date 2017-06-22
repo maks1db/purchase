@@ -30,6 +30,11 @@ export default (props) => (
             className={className('link')} 
             children={<Link to="/" activeClassName="active">Главная</Link>}
         ></MenuItem>
+        <MenuItem 
+            onClick ={()=>props.onToggle(true)}
+            className={className('link')} 
+            children={<Link to="/history" activeClassName="active">История закупок</Link>}
+        ></MenuItem>
     </Drawer>
 </div>
 );

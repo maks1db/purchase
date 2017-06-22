@@ -20,6 +20,13 @@ export const setTitle = title => {
     };
 };
 
+export const setRowState = arr => {
+    return {
+        type: 'ROW_STATE',
+        payload: arr
+    };
+}; 
+
 export const setActiveMenu = (name) =>{
     return {
         type: 'ACTIVE_MENU',

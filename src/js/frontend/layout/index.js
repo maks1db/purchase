@@ -11,7 +11,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
     return {
-        toggle: (state) => dispatch(toggleMenu(state)) 
+        toggle: (state) => dispatch(toggleMenu(state))
+        
     };
 }
 

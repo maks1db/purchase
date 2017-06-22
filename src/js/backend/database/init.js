@@ -22,6 +22,8 @@ db.query(createTable('migrations', {version: 'VARCHAR(16)', date: 'DATETIME'}))
     else{
         res[0].version;
     }
+}).then((version) => {
+    db.close();
 });
 
 
