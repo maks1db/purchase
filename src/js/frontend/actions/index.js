@@ -13,6 +13,13 @@ export const receive = (type, payload) => {
     };
 };
 
+export const setPaperDepth = (value) => {
+    return {
+        type: 'MAIN_PAPER_DEPTH',
+        payload: value
+    };
+};
+
 export const setTitle = title => {
     return {
         type: 'CHANGE_TITLE',

@@ -9,7 +9,7 @@ import ReduxToastr from 'react-redux-toastr';
 import Main from './main';
 import Edit from './edit';
 import store from './store';
-
+import './scss/index.scss';
 import 'react-redux-toastr/src/styles/index.scss';
 
 class App extends React.Component{

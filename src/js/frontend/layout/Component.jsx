@@ -15,7 +15,7 @@ export default (props) => (
     onToggle={props.onToggle} 
     stateMenu={props.stateMenu}
     />
-    <Content>
+    <Content paperDepth={props.paperDepth}>
         {props.children}
     </Content>
 </div>
