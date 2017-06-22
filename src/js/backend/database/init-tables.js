@@ -11,6 +11,7 @@ module.exports = [
         office: 'VARCHAR(200)',
         date: 'DATETIME',
         plan_date: 'DATETIME',
+        finished: 'BOOLEAN',
         email: 'VARCHAR(200)' 
     }),
     createTable('products',{
