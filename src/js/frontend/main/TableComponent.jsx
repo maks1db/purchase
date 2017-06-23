@@ -11,7 +11,8 @@ import {
 import dateToString from '../libs/dateToString';
 
 export default (props) => (
-  <Table onRowSelection={(array)=>props.setRowState(array)}>
+  
+  <Table onRowSelection={(array)=>props.setRowState(array)} >
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>Закупка</TableHeaderColumn>
@@ -34,4 +35,5 @@ export default (props) => (
       
     </TableBody>
   </Table>
+
 );

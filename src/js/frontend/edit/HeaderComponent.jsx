@@ -42,7 +42,7 @@ const Date = (props) => (
     />
 );
 
-export default () => 
+export default (props) => 
 (<Tabs>
     <Tab label="Закупка">
         <TableGroup>
@@ -87,7 +87,7 @@ export default () =>
             </Right>
         </TableGroup>
     </Tab>
-    <Tab label="Даты">
+    <Tab label="Периоды">
         <TableGroup>
             <Left>
                 <Date title="Дата доставки (плановая)"/>   
