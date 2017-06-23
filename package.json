@@ -26,7 +26,8 @@
     "mysql": "2.13.0",
     "squel": "5.10.0",
     "express": "4.15.3",
-    "body-parser": "^1.17.2"
+    "body-parser": "^1.17.2",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "babel": "~6.5.2",

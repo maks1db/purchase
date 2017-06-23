@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setTitle, setPaperDepth } from '../actions';
 import If from '../directives/if';
 import Save from '../activeButtonsComponents/Save.jsx';
-import Main from './MainComponent.jsx';
+import Header from './HeaderComponent.jsx';
 
 function mapStateToProps(state){
     return {
@@ -39,7 +39,7 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
-            <Main />
+            <Header />
             <Save {...If(this.state.modify, {secondary:true}, {primary:true})} />    
         </div>
         );

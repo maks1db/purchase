@@ -1,19 +1,24 @@
 import React from 'react';
-import Button from './ActionButton.jsx';
+import ActionButton from './ActionButton.jsx';
 import Create from 'material-ui/svg-icons/content/create';
 
-const style = (bottom = 30, right = 30) => {
-    return {
-        position: 'fixed',
-        bottom: `${bottom}px`,
-        right: `${right}px`
-    };
+const style = (coord) => {
+    let obj = {position: 'fixed'};
+    const keys = ['bottom', 'top', 'left', 'right'];
+
+    Object.keys(coord).forEach(x=> {
+      if (keys.indexOf(x) >= 0){
+          obj[x] = `${coord[x]}px`;
+      }
+    });
+
+    return obj;
 };
 
 export default (props) => (
   <div>
-    <Button style={style(props.bottom, props.right)} {...props}>
+    <ActionButton style={style(props)} {...props}>
       {props.children}
-    </Button>
+    </ActionButton>
   </div>
 );

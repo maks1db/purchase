@@ -51,8 +51,10 @@ export default class Index extends React.Component{
             />
             {If(
                 this.props.rowState.length > 0,
-                (<div><ButtonChange bottom={80} right={70} /><ButtonRemove /></div>),
+                (<div><ButtonChange bottom={80} right={70} /><ButtonRemove bottom={30} right={30} /></div>),
                 (<ButtonAdd 
+                    bottom={30} 
+                    right={30}
                     onClick={() => browserHistory.push('/create')}
                 />)
             )}                
