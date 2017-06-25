@@ -15,7 +15,10 @@ module.exports = [
         email: 'VARCHAR(200)' 
     }),
     createTable('products',{
-        title: 'VARCHAR(200)',
+        product: 'VARCHAR(200)',
+        unit: 'VARCHAR(24)',
+        price: 'DECIMAL',
+        count: 'DECIMAL',
         purchase_id: 'INT'
     })
 ];

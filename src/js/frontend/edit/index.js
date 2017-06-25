@@ -27,21 +27,25 @@ export default class Index extends React.Component{
 
         this.state = {
             modify: true,
+            title: 'Сало',
             products: [{
                 id: 2323523523513464574,
-                title: "Товар",
+                product: "Товар",
+                unit: 'шт.',
                 price: 12.50,
                 count: 4
             },
             {
                 id: 2323523523513463234574,
-                title: "Веники",
+                product: "Веники",
+                unit: 'шт.',
                 price: 15.50,
                 count: 6
             }
             ],
             activeRow: [],
-            openDialog: false
+            openDialog: false,
+            row: {}
         };
 
         //bind events
@@ -61,7 +65,50 @@ export default class Index extends React.Component{
                 }       
                 break;
             case constants.dialogState:
-                this.setState({dialogState: value});
+                if (value){
+                    this.setState({row: {
+                        product: '',
+                        price: 0,
+                        count: 0,
+                        unit: 'шт.',
+                        sum: 0,
+                        itNew: true,
+                        id: 0
+                    }});
+                }
+                this.setState({openDialog: value});
+                break;
+            case constants.editRow:
+                if (value.length > 0){
+                    this.setState({row:
+                        this.state.products[value[0]],
+                    openDialog: true});
+                }       
+                break;
+            case constants.headerChange:
+                this.setState({
+                    [value.key]:value.value
+                });
+            case constants.saveRow:
+                let products = [];
+                if (value.id){
+                    products = [...this.state.products].map(x => {
+                        if(x.id === value.id){
+                            x = {...value};
+                        }
+                        return x;
+                    });
+                }
+                else{
+                    value.id = new Date().valueOf();
+                    products = [...this.state.products];
+                    products.push(value);
+                    
+                }
+
+                this.setState({'products': products,
+                            openDialog: false});
+                break;
         }
     }
 
@@ -77,7 +124,7 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
-            <Header {...this.state} childEvent={this.childEvent}/>
+            <Header purchase={this.state.purchase} childEvent={this.childEvent}/>
             <Table {...this.state} childEvent={this.childEvent} />
             <Save 
                 childEvent={this.childEvent}

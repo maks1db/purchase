@@ -4,12 +4,14 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
 import dateToString from '../libs/dateToString';
+import bind from '../directives/bind';
 
 const Text = (props) => (
     <TextField
         hintText={props.title}
         floatingLabelText={props.title}
         fullWidth={true}
+        {...props}
     />  
 );
 
@@ -42,59 +44,108 @@ const Date = (props) => (
     />
 );
 
-export default (props) => 
-(<Tabs>
-    <Tab label="Закупка">
-        <TableGroup>
-            <Left>
-                <Text title="Закупка" />  
-            </Left>
-            <Right>
-                
-                <TableGroup>
-                    <Left>
-                        <Text title="Офис" />    
-                    </Left>
-                    <Right>
-                        <Checkbox
-                            label="Оплачена"
-                        /> 
-                        <Checkbox
-                            label="Завершена"
-                        /> 
-                    </Right>
-                </TableGroup> 
-            </Right>
-        </TableGroup>
-    </Tab>
-    <Tab label="Организатор">
-        <TableGroup>
-            <Left>
-                <Text title="Организатор" />  
-            </Left>
-            <Right>
-                <Text title="Ссылка на страницу" />
-            </Right>
-        </TableGroup>
-    </Tab>
-    <Tab label="Ссылки">
-        <TableGroup>
-            <Left>
-                <Text title="Ссылка на тему" />   
-            </Left>
-            <Right>
-                <Text title="Ссылка на альбом" />
-            </Right>
-        </TableGroup>
-    </Tab>
-    <Tab label="Периоды">
-        <TableGroup>
-            <Left>
-                <Date title="Дата доставки (плановая)"/>   
-            </Left>
-            <Right>
-                <Date title="Дата доставки"/>
-            </Right>
-        </TableGroup>
-    </Tab>
-</Tabs>);
+export default class Component extends React.Component {
+
+    constructor(){
+        super();
+        this.state = {
+            title: '',
+            office: '',
+            paid: false,
+            finished: false,
+            org: '',
+            orgHref: '',
+            href: '',
+            albumHref: '',
+            date: undefined,
+            planDate: undefined
+        };
+    }
+
+    render(){
+
+        const Bind = bind(this);
+        return (<Tabs>
+        <Tab label="Закупка">
+            <TableGroup>
+                <Left>
+                    <Text 
+                    title="Закупка" 
+                    {...Bind.byName('title')}
+                    />  
+                </Left>
+                <Right>
+                    
+                    <TableGroup>
+                        <Left>
+                            <Text 
+                            title="Офис"
+                            {...Bind.byName('office')} 
+                            />    
+                        </Left>
+                        <Right>
+                            <Checkbox
+                                label="Оплачена"
+                                {...Bind.byName('paid')} 
+                            /> 
+                            <Checkbox
+                                label="Завершена"
+                                {...Bind.byName('finished')} 
+                            /> 
+                        </Right>
+                    </TableGroup> 
+                </Right>
+            </TableGroup>
+        </Tab>
+        <Tab label="Организатор">
+            <TableGroup>
+                <Left>
+                    <Text 
+                    title="Организатор" 
+                    {...Bind.byName('org')}
+                    />  
+                </Left>
+                <Right>
+                    <Text 
+                    title="Ссылка на страницу" 
+                    {...Bind.byName('orgHref')}
+                    />
+                </Right>
+            </TableGroup>
+        </Tab>
+        <Tab label="Ссылки">
+            <TableGroup>
+                <Left>
+                    <Text 
+                    title="Ссылка на тему" 
+                    {...Bind.byName('href')}
+                    />   
+                </Left>
+                <Right>
+                    <Text 
+                    title="Ссылка на альбом" 
+                    {...Bind.byName('albumHref')}
+                    />
+                </Right>
+            </TableGroup>
+        </Tab>
+        <Tab label="Периоды">
+            <TableGroup>
+                <Left>
+                    <Date 
+                    title="Дата доставки (плановая)"
+                    {...Bind.byName('planDate')}
+                    />   
+                </Left>
+                <Right>
+                    <Date 
+                    title="Дата доставки"
+                    {...Bind.byName('plan')}
+                    />
+                </Right>
+            </TableGroup>
+        </Tab>
+    </Tabs>);  
+    }
+}
+

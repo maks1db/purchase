@@ -24,6 +24,7 @@ const BtnPack = (props) => (
             bottom={80} 
             left={30} 
             mini={true} 
+            onTouchTap={() => props.childEvent(constants.editRow, props.activeRow)}
             {...If(props.activeRow.length === 0, {disabled:true}, {})}
          />
         <Remove 
@@ -43,6 +44,7 @@ export default (props) => (
       <TableRow>
         <TableHeaderColumn>Товар</TableHeaderColumn>
         <TableHeaderColumn>Количество</TableHeaderColumn>
+        <TableHeaderColumn>Ед.</TableHeaderColumn>
         <TableHeaderColumn>Цена</TableHeaderColumn>
         <TableHeaderColumn>Сумма</TableHeaderColumn>
       </TableRow>
@@ -51,8 +53,9 @@ export default (props) => (
         {        
             props.products.map(x => 
                 (<TableRow key={x.id}>
-                    <TableRowColumn>{x.title}</TableRowColumn>
+                    <TableRowColumn>{x.product}</TableRowColumn>
                     <TableRowColumn>{x.count}</TableRowColumn>
+                    <TableRowColumn>{x.unit}</TableRowColumn>
                     <TableRowColumn>{x.price}</TableRowColumn>
                     <TableRowColumn>{x.count * x.price}</TableRowColumn>
                 </TableRow>)
