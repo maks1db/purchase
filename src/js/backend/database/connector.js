@@ -24,7 +24,7 @@ class connector {
     }
 
     close(){
-        connectionMySQL.end();
+        //connectionMySQL.end();
     }
 }
 

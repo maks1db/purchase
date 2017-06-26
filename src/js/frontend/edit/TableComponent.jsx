@@ -36,7 +36,12 @@ const BtnPack = (props) => (
             />
     </div>
 );
-export default (props) => (
+export default (props) => {
+    let sum = 0;
+    props.products.forEach((x) => {
+        sum = parseInt(x.count) * parseInt(x.price);  
+    });
+    return (
 <div style={{padding: '2em 4em'}}>
     <BtnPack {...props} />
     <Table onRowSelection={(array)=>props.childEvent(constants.activeRow, array)}>
@@ -61,7 +66,18 @@ export default (props) => (
                 </TableRow>)
             )        
         }
+        
     </TableBody>
   </Table>
-</div>
-);
+  {props.products.length > 0 && 
+  (<div className="table w-100" style={{paddingTop: '2em', fontSize: '14px', fontWeight: 'bold'}}>
+        <div className="cell w-50 p-r-15px p-l-15px">
+            Итого
+        </div>
+        <div className="cell w-50 p-l-15px p-r-15px" style={{textAlign:'right'}}>
+            {sum}
+        </div>
+    </div>)
+  }
+</div>);
+};

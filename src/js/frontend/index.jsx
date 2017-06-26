@@ -27,6 +27,7 @@ class App extends React.Component{
                             <Route path="/" component={Layout}>
                                 <IndexRoute component={Main}/> 
                                 <Route path="/create" component={Edit} />
+                                <Route path="/edit/:id" component={Edit} />
                             </Route>        
                         </Router>                        
                     </MuiThemeProvider>

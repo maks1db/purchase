@@ -63,6 +63,10 @@ export default class Component extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({...nextProps.header});
+    }
+
     render(){
 
         const Bind = bind(this);
@@ -142,7 +146,7 @@ export default class Component extends React.Component {
                 <Right>
                     <Date 
                     title="Дата доставки"
-                    {...Bind.byName('plan', event)}
+                    {...Bind.byName('date', event)}
                     />
                 </Right>
             </TableGroup>

@@ -3,10 +3,22 @@ const connector = require('../database/connector');
 const camelcase = require('camelcase');
 const snakecase = require('snake-case');
 
+function toMySqlString(opt, key, item){
+    
+    if (!opt) return item;
+    if ('dateColumns' in opt){
+        if (opt.dateColumns.indexOf(key) >= 0){
+            return new Date(item).toISOString().replace('T', ' ').replace('Z','');
+        }
+    }
+    return item;
+}
+
 class CRUD {
 
-    constructor(table){
+    constructor(table, options){
         this.table = table;
+        this.options = options;
     }
 
     init(name){
@@ -30,12 +42,13 @@ class CRUD {
 
     put(req, res){
 
-        const items = req.body;
+        const item = req.body;
         
         let q = squel.insert()
         .into(this.table);
 
-        Object.keys(items).forEach(x => q.set(snakecase(x), items[x]));
+        Object.keys(item).forEach(x => q.set(snakecase(x), 
+            toMySqlString(this.options, x, item[x])));
 
         const db = new connector();
         db.query(q.toString())
@@ -64,7 +77,7 @@ class CRUD {
             const limit = req.query.limit || 0;
 
             if (get){
-                JSON.parse(get).forEach(x => q.where(x));
+                get.forEach(x => q.where(x));
             }
             if (sort){
                 Object.keys(JSON.parse(sort)).forEach(x => q.sort(snakecase(x.key), x.value));
@@ -117,15 +130,25 @@ class CRUD {
 
         let q = squel.update()
         .table(this.table);
-
-        Object.keys(req.body).forEach(x => q.set(snakecase(x), req.body[x]));
+        let items = req.body;
+        Object.keys(items).forEach(x => q.set(snakecase(x), toMySqlString(this.options, x, items[x])));
         
         q.where(`id = ${id}`);
 
         db.query(q.toString())
         .then(result => {
-            res.json({result: result.changedRows === 1});
-            db.close();
+            if ('onSaveQuery' in this.options){
+                db.query(this.options.onSaveQuery(id, squel))
+                .then(() => {
+                    res.json({result: true});
+                    db.close();
+                });
+            }
+            else{
+                res.json({result: result.changedRows === 1});
+                db.close();
+            }
+            
         });
     }
 }

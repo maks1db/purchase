@@ -24,6 +24,8 @@ function mapDispatchToProps(dispatch){
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Index extends React.Component{
     constructor(){
+        
+        document.title = "Активные закупки";
         super();
 
         this.state = {

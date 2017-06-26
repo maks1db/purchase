@@ -27,7 +27,10 @@ const port = 8000;
 // app.get('*',function(req,res){
 //     res.sendFile(__dirname + '/index.html');
 // });
-app.use('/api/purchase', new CRUD('purchases').init('item'));
+app.use('/api/purchase', new CRUD('purchases',{
+    dateColumns: ['date', 'planDate'],
+    onSaveQuery: (id, q) => q.delete().from('products').where(`purchase_id = ${id}`)
+}).init('item'));
 app.use('/api/product', new CRUD('products').init('item'));
 // app.use('/api/cashRegister', new CRUD(models.cashRegister).init('item'));
 // app.use('/api/settings', new CRUD(models.settings).init('item'));

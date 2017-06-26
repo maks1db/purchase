@@ -7,7 +7,9 @@ import Header from './HeaderComponent.jsx';
 import Table from './TableComponent.jsx';
 import constants from './constants';
 import Dialog from './DialogRow.jsx';
-import api from '../api'
+import api from '../api';
+import {toastr} from 'react-redux-toastr';
+import {browserHistory} from 'react-router';
 
 function mapStateToProps(state){
     return {
@@ -34,7 +36,8 @@ export default class Index extends React.Component{
             activeRow: [],
             openDialog: false,
             row: {},
-            header: {}
+            header: {},
+            sum: 0
         };
 
         //bind events
@@ -44,17 +47,40 @@ export default class Index extends React.Component{
     childEvent(type, value){
         switch (type){
             case constants.save:
+                let h = this.state.header;
+                let sum = 0;
+                this.state.products.forEach((x) => {
+                    sum = parseInt(x.count) * parseInt(x.price);  
+                });
+                delete h.id;
+                const saveRows = (id) => {
+                    let p = [];
+                    let base = [...this.state.products];
+                    
+                    base.forEach(x => {
+                        x.purchaseId = id;
+                        delete x.id;
+                        delete x.sum;
+                        delete x.itNew;
 
-                if (this.state.id === 0){
-
-                    let h= this.state.header;
-                    delete h.id;
-                    api.put('purchase', h).then(res=> {
-                        this.setState({id: res.data.id});
+                        p.push(api.put('product', x))
                     })
+                    return Promise.all(p);
+                }
+                if (this.state.id === 0){
+                    api.put('purchase', h).then(res=> {
+                        saveRows(res.data.id).then(resRows =>{
+                            this.setState({id: res.data.id});
+                            toastr.success('Сохранение', 'Данные успешно сохранены');
+                        });
+                    });
                 }
                 else{
-                    api.update('purchase', this.state.id, h).then(x=> {});
+                    api.update('purchase', this.state.id, h).then(x=> {
+                        saveRows(this.state.id).then(resRows =>{
+                            toastr.success('Сохранение', 'Данные успешно сохранены')
+                        });
+                    });
                 }
                 break;
             case constants.activeRow:
@@ -115,8 +141,34 @@ export default class Index extends React.Component{
     }
 
     componentWillMount(){
-        this.props.setTitle('Новая закупка');
+        
         this.props.setPaperDepth(0);
+
+        let id = this.props.params.id;
+        if (id){
+            this.setState({id});
+            api.getItem('purchase',id)
+            .then(result => {
+                let data = result.data;
+                if (data.date) data.date = new Date(data.date);
+                if (data.planDate) data.planDate = new Date(data.planDate);
+                this.setState({header: data});
+                document.title = data.title;
+                this.props.setTitle(data.title);
+            });
+
+            api.get('product', {
+                query: ['purchase_id = ' + id]
+            }).then( x => {
+                var a = 1;
+                this.setState({products: x.data});
+        
+            });
+        }
+        else{
+            this.props.setTitle('Новая закупка');
+            document.title = "Новая закупка";
+        }
     }
 
     componentWillUnmount(){
@@ -126,8 +178,8 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
-            <Header purchase={this.state.purchase} childEvent={this.childEvent}/>
-            <Table {...this.state} childEvent={this.childEvent} />
+            <Header header={this.state.header} childEvent={this.childEvent}/>
+            <Table {...this.state} sum={0} childEvent={this.childEvent} />
             <Save 
                 onTouchTap={() => this.childEvent(constants.save, this.state.header)}
                 bottom={30} 
