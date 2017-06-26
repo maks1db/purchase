@@ -1,5 +1,7 @@
 let squel = require('squel');
 const connector = require('../database/connector');
+const camelcase = require('camelcase');
+const snakecase = require('snake-case');
 
 class CRUD {
 
@@ -33,7 +35,7 @@ class CRUD {
         let q = squel.insert()
         .into(this.table);
 
-        Object.keys(items).forEach(x => q.set(x, items[x]));
+        Object.keys(items).forEach(x => q.set(snakecase(x), items[x]));
 
         const db = new connector();
         db.query(q.toString())
@@ -65,7 +67,7 @@ class CRUD {
                 JSON.parse(get).forEach(x => q.where(x));
             }
             if (sort){
-                JSON.parse(sort).forEach(x => q.sort(x.key, x.value));
+                Object.keys(JSON.parse(sort)).forEach(x => q.sort(snakecase(x.key), x.value));
             }
 
             q.limit(limit);
@@ -74,11 +76,18 @@ class CRUD {
         db.query(q.toString())
         .then(result => {
 
+            let csResult = result.map(x => {
+                let obj = {};
+                Object.keys(x).forEach(o => {
+                    obj[camelcase(o)] = x[o];
+                });
+                return obj;
+            });
             if (takeFirst){
-                res.json(result.length > 0 ? result[0] : {});   
+                res.json(csResult.length > 0 ? csResult[0] : {});   
             }
             else{
-                res.json(result);
+                res.json(csResult);
             }
             
             db.close();
@@ -109,7 +118,7 @@ class CRUD {
         let q = squel.update()
         .table(this.table);
 
-        Object.keys(req.body).forEach(x => q.set(x, req.body[x]));
+        Object.keys(req.body).forEach(x => q.set(snakecase(x), req.body[x]));
         
         q.where(`id = ${id}`);
 

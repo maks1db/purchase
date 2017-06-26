@@ -7,6 +7,7 @@ import Header from './HeaderComponent.jsx';
 import Table from './TableComponent.jsx';
 import constants from './constants';
 import Dialog from './DialogRow.jsx';
+import api from '../api'
 
 function mapStateToProps(state){
     return {
@@ -26,26 +27,14 @@ export default class Index extends React.Component{
         super();
 
         this.state = {
+            id: 0,
             modify: true,
             title: 'Сало',
-            products: [{
-                id: 2323523523513464574,
-                product: "Товар",
-                unit: 'шт.',
-                price: 12.50,
-                count: 4
-            },
-            {
-                id: 2323523523513463234574,
-                product: "Веники",
-                unit: 'шт.',
-                price: 15.50,
-                count: 6
-            }
-            ],
+            products: [],
             activeRow: [],
             openDialog: false,
-            row: {}
+            row: {},
+            header: {}
         };
 
         //bind events
@@ -54,6 +43,20 @@ export default class Index extends React.Component{
 
     childEvent(type, value){
         switch (type){
+            case constants.save:
+
+                if (this.state.id === 0){
+
+                    let h= this.state.header;
+                    delete h.id;
+                    api.put('purchase', h).then(res=> {
+                        this.setState({id: res.data.id});
+                    })
+                }
+                else{
+                    api.update('purchase', this.state.id, h).then(x=> {});
+                }
+                break;
             case constants.activeRow:
                 this.setState({activeRow: value});
                 break;
@@ -86,9 +89,8 @@ export default class Index extends React.Component{
                 }       
                 break;
             case constants.headerChange:
-                this.setState({
-                    [value.key]:value.value
-                });
+                this.setState({header: value});
+                break;
             case constants.saveRow:
                 let products = [];
                 if (value.id){
@@ -127,7 +129,7 @@ export default class Index extends React.Component{
             <Header purchase={this.state.purchase} childEvent={this.childEvent}/>
             <Table {...this.state} childEvent={this.childEvent} />
             <Save 
-                childEvent={this.childEvent}
+                onTouchTap={() => this.childEvent(constants.save, this.state.header)}
                 bottom={30} 
                 right={30} 
                 {...If(this.state.modify, {secondary:true}, {primary:true})} 

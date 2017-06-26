@@ -32,6 +32,9 @@
         {
             "type": "node",
             "request": "launch",
+            "env": {
+                "NODE_ENV":"dev"
+            },
             "name": "Launch Program",
             "program": "${workspaceRoot}/app.js"
         },

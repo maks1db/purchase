@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
 import dateToString from '../libs/dateToString';
 import bind from '../directives/bind';
+import constants from './constants';
 
 const Text = (props) => (
     <TextField
@@ -65,13 +66,14 @@ export default class Component extends React.Component {
     render(){
 
         const Bind = bind(this);
+        const event = () => this.props.childEvent(constants.headerChange, this.state);
         return (<Tabs>
         <Tab label="Закупка">
             <TableGroup>
                 <Left>
                     <Text 
                     title="Закупка" 
-                    {...Bind.byName('title')}
+                    {...Bind.byName('title', event)}
                     />  
                 </Left>
                 <Right>
@@ -80,17 +82,17 @@ export default class Component extends React.Component {
                         <Left>
                             <Text 
                             title="Офис"
-                            {...Bind.byName('office')} 
+                            {...Bind.byName('office', event)} 
                             />    
                         </Left>
                         <Right>
                             <Checkbox
                                 label="Оплачена"
-                                {...Bind.byName('paid')} 
+                                {...Bind.byName('paid', event)} 
                             /> 
                             <Checkbox
                                 label="Завершена"
-                                {...Bind.byName('finished')} 
+                                {...Bind.byName('finished', event)} 
                             /> 
                         </Right>
                     </TableGroup> 
@@ -102,13 +104,13 @@ export default class Component extends React.Component {
                 <Left>
                     <Text 
                     title="Организатор" 
-                    {...Bind.byName('org')}
+                    {...Bind.byName('org', event)}
                     />  
                 </Left>
                 <Right>
                     <Text 
                     title="Ссылка на страницу" 
-                    {...Bind.byName('orgHref')}
+                    {...Bind.byName('orgHref', event)}
                     />
                 </Right>
             </TableGroup>
@@ -118,13 +120,13 @@ export default class Component extends React.Component {
                 <Left>
                     <Text 
                     title="Ссылка на тему" 
-                    {...Bind.byName('href')}
+                    {...Bind.byName('href', event)}
                     />   
                 </Left>
                 <Right>
                     <Text 
                     title="Ссылка на альбом" 
-                    {...Bind.byName('albumHref')}
+                    {...Bind.byName('albumHref', event)}
                     />
                 </Right>
             </TableGroup>
@@ -134,13 +136,13 @@ export default class Component extends React.Component {
                 <Left>
                     <Date 
                     title="Дата доставки (плановая)"
-                    {...Bind.byName('planDate')}
+                    {...Bind.byName('planDate', event)}
                     />   
                 </Left>
                 <Right>
                     <Date 
                     title="Дата доставки"
-                    {...Bind.byName('plan')}
+                    {...Bind.byName('plan', event)}
                     />
                 </Right>
             </TableGroup>

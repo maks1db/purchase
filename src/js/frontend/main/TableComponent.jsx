@@ -27,7 +27,7 @@ export default (props) => (
                 (<TableRow key={x.id}>
                     <TableRowColumn>{x.title}</TableRowColumn>
                     <TableRowColumn>{x.office}</TableRowColumn>
-                    <TableRowColumn>{dateToString(x.planDate, 'date')}</TableRowColumn>
+                    <TableRowColumn>{x.planDate ? dateToString(x.planDate, 'date') : ''}</TableRowColumn>
                     <TableRowColumn>{x.cost}</TableRowColumn>
                 </TableRow>)
             )        

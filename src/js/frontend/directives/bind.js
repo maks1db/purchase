@@ -3,10 +3,10 @@ class Bind {
         this.obj = obj;
     }
 
-    byName(name){
+    byName(name, event){
         return {
             value: this.obj.state[name],
-            onChange: (e, value) => this.obj.setState({[name]: e ? e.target.value : value})
+            onChange: (e, value) => this.obj.setState({[name]: e ? e.target.value : value}, event)
         };
     }
 }

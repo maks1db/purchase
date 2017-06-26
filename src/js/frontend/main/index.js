@@ -7,6 +7,7 @@ import ButtonChange from '../activeButtonsComponents/Change.jsx';
 import ButtonRemove from '../activeButtonsComponents/Remove.jsx'
 import If from '../directives/if';
 import {browserHistory} from 'react-router';
+import api from '../api';
 
 function mapStateToProps(state){
     return {
@@ -26,20 +27,16 @@ export default class Index extends React.Component{
         super();
 
         this.state = {
-            purchases: [
-                {
-                    id: 1,
-                    title: 'Закупка',
-                    planDate: new Date(),
-                    office: 'Катукова 48',
-                    cost: 1200 
-                }
-            ]
+            purchases: []
         };
     }
 
     componentWillMount(){
         this.props.setTitle('Активные закупки');
+
+        api.get('purchase').then(res =>{
+            this.setState({purchases: res.data});
+        });
     }
 
     render(){
@@ -49,14 +46,14 @@ export default class Index extends React.Component{
                 purchases={this.state.purchases}
                 setRowState={this.props.setRowState} 
             />
-            {If(
-                this.props.rowState.length > 0,
-                (<div><ButtonChange bottom={80} right={70} /><ButtonRemove bottom={30} right={30} /></div>),
-                (<ButtonAdd 
-                    bottom={30} 
-                    right={30}
-                    onClick={() => browserHistory.push('/create')}
-                />)
+            <ButtonAdd 
+                bottom={30} 
+                right={30}
+                onClick={() => browserHistory.push('/create')}
+            />
+            {If(this.props.rowState.length > 0,
+                (<div><ButtonChange bottom={100} right={30} /><ButtonRemove bottom={30} right={100} /></div>),
+                ''
             )}                
         </div>
         );

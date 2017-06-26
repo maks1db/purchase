@@ -28,7 +28,7 @@ const port = 8000;
 //     res.sendFile(__dirname + '/index.html');
 // });
 app.use('/api/purchase', new CRUD('purchases').init('item'));
-app.use('/api/products', new CRUD('products').init('item'));
+app.use('/api/product', new CRUD('products').init('item'));
 // app.use('/api/cashRegister', new CRUD(models.cashRegister).init('item'));
 // app.use('/api/settings', new CRUD(models.settings).init('item'));
 // app.use('/api', data1c);
