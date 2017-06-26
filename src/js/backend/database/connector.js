@@ -5,7 +5,11 @@ let connectionMySQL;
 
 class connector {
     constructor(){
-        connectionMySQL = mysql.createConnection(config);
+        connectionMySQL = mysql.createConnection(config);   
+    }
+
+    config(){
+        return config;
     }
 
     query(text){
@@ -20,7 +24,7 @@ class connector {
     }
 
     close(){
-        connectionMySQL.close();
+        connectionMySQL.end();
     }
 }
 

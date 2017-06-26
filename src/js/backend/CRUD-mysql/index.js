@@ -1,8 +1,10 @@
-var squel = require('squel');
+let squel = require('squel');
+const connector = require('../database/connector');
+
 class CRUD {
 
     constructor(table){
-        this.model = table;
+        this.table = table;
     }
 
     init(name){
@@ -26,61 +28,95 @@ class CRUD {
 
     put(req, res){
 
-        const item = new this.model(req.body);
-        if ('put' in this.options){
-            req.body = this.options.put(req.body);
-        }
-        item.save().then((doc) => {
-            res.json({
-                result: true,
-                id: doc._id.toString()
-            });
+        const items = req.body;
+        
+        let q = squel.insert()
+        .into(this.table);
+
+        Object.keys(items).forEach(x => q.set(x, items[x]));
+
+        const db = new connector();
+        db.query(q.toString())
+        .then(result => {
+            res.json({id: result.insertId});
+            db.close();
         });
     }
 
     get(req, res){
     
         const id = req.params.id;
+        let q = squel.select()
+        .from(this.table);
+        const db = new connector();
 
-        if (id !== undefined){
-            
-            this.model.findById(id).then((obj) => {           
-                res.json(obj);
-            });
+        let takeFirst = false;
+        if (id !== undefined){            
+            q.where(`id = ${id}`);
+            takeFirst = true;
         }
         else{
 
-            const get =  req.query.query;
+            const get = req.query.query;
             const sort = req.query.sort;
             const limit = req.query.limit || 0;
 
-            this.model.find(JSON.parse(get)).sort(JSON.parse(sort)).limit(parseInt(limit)).then((data) => {
+            if (get){
+                JSON.parse(get).forEach(x => q.where(x));
+            }
+            if (sort){
+                JSON.parse(sort).forEach(x => q.sort(x.key, x.value));
+            }
 
-                let arr = [];
-                data.forEach(x => arr.push(x._doc));
-                res.json(arr);
-                
-            });
+            q.limit(limit);
         }
+
+        db.query(q.toString())
+        .then(result => {
+
+            if (takeFirst){
+                res.json(result.length > 0 ? result[0] : {});   
+            }
+            else{
+                res.json(result);
+            }
+            
+            db.close();
+        });
     }
 
     delete(req, res){
 
+        const db = new connector();
         const id = req.params.id;   
+        let q = squel.delete()
+        .from(this.table)
+        .where(`id = ${id}`);
 
-        this.model.remove({_id: ObjectID(id)}).then((data) =>{
-            res.json({
-                result: data.result.ok === 1
-            });       
+        db.query(q.toString())
+        .then(result => {
+            res.json({result: result.affectedRows === 1});
+            db.close();
         });
 
     }
 
     post(req, res){
-        const id = ObjectID(req.params.id);
 
-        this.model.update({_id: id}, req.body).then((data) => {
-            res.json({result: data.nModified === 1});
+        const id = req.params.id;
+        const db = new connector();
+
+        let q = squel.update()
+        .table(this.table);
+
+        Object.keys(req.body).forEach(x => q.set(x, req.body[x]));
+        
+        q.where(`id = ${id}`);
+
+        db.query(q.toString())
+        .then(result => {
+            res.json({result: result.changedRows === 1});
+            db.close();
         });
     }
 }

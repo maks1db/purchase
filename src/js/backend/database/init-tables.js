@@ -12,7 +12,8 @@ module.exports = [
         date: 'DATETIME',
         plan_date: 'DATETIME',
         finished: 'BOOLEAN',
-        email: 'VARCHAR(200)' 
+        email: 'VARCHAR(200)',
+        sum: 'DECIMAL' 
     }),
     createTable('products',{
         product: 'VARCHAR(200)',

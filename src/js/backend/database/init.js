@@ -4,7 +4,8 @@ const createTable = require('./q/create-table');
 const squel = require('squel');
 const initTables = require('./init-tables');
 
-db.query(createTable('migrations', {version: 'VARCHAR(16)', date: 'DATETIME'}))
+db.query(`CREATE DATABASE IF NOT EXISTS ${db.config().database}`)
+.then(() => db.query(createTable('migrations', {version: 'VARCHAR(16)', date: 'DATETIME'})))
 .then(() => {
     return db.query(squel.select()
         .from('migrations')

@@ -2,6 +2,7 @@ const express       = require('express');
 const app           = express();                 
 const bodyParser    = require('body-parser');
 const path          = require('path');
+const CRUD          = require('./src/js/backend/CRUD-mysql');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,11 +24,11 @@ const port = 8000;
 
 //app.use('/', (req))
 
-app.get('*',function(req,res){
-    res.sendFile(__dirname + '/index.html');
-});
-// app.use('/api/barcodes', new CRUD(models.barcodes).init('item'));
-// app.use('/api/products', new CRUD(models.products).init('item'));
+// app.get('*',function(req,res){
+//     res.sendFile(__dirname + '/index.html');
+// });
+app.use('/api/purchase', new CRUD('purchases').init('item'));
+app.use('/api/products', new CRUD('products').init('item'));
 // app.use('/api/cashRegister', new CRUD(models.cashRegister).init('item'));
 // app.use('/api/settings', new CRUD(models.settings).init('item'));
 // app.use('/api', data1c);
