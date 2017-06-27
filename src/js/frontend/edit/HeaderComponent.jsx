@@ -69,7 +69,7 @@ export default class Component extends React.Component {
 
     render(){
 
-        const Bind = bind(this);
+        const Bind = bind(this, false);
         const event = () => this.props.childEvent(constants.headerChange, this.state);
         return (<Tabs>
         <Tab label="Закупка">
@@ -92,11 +92,11 @@ export default class Component extends React.Component {
                         <Right>
                             <Checkbox
                                 label="Оплачена"
-                                {...Bind.byName('paid', event)} 
+                                {...Bind.checked('paid', event)} 
                             /> 
                             <Checkbox
                                 label="Завершена"
-                                {...Bind.byName('finished', event)} 
+                                {...Bind.checked('finished', event)} 
                             /> 
                         </Right>
                     </TableGroup> 

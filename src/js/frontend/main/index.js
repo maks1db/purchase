@@ -41,6 +41,10 @@ export default class Index extends React.Component{
         });
     }
 
+    componentWillUnmount(){
+        this.props.setRowState([]);
+    }
+
     render(){
         return (
         <div>
