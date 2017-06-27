@@ -50,8 +50,9 @@ export default class Index extends React.Component{
                 let h = this.state.header;
                 let sum = 0;
                 this.state.products.forEach((x) => {
-                    sum = parseInt(x.count) * parseInt(x.price);  
+                    sum += parseInt(x.count) * parseInt(x.price);  
                 });
+                h.sun = sum;
                 delete h.id;
                 const saveRows = (id) => {
                     let p = [];

@@ -39,7 +39,7 @@ const BtnPack = (props) => (
 export default (props) => {
     let sum = 0;
     props.products.forEach((x) => {
-        sum = parseInt(x.count) * parseInt(x.price);  
+        sum += parseInt(x.count) * parseInt(x.price);  
     });
     return (
 <div style={{padding: '2em 4em'}}>
