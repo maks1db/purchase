@@ -1,6 +1,9 @@
 {
-  "user": "root",
-  "password": "kolbaska",
-  "database": "purchase",
-  "host": "localhost"
+    "mysql":{
+      "user": "root",
+      "password": "kolbaska",
+      "database": "purchase",
+      "host": "localhost"
+    }
 }
+  

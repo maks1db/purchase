@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setTitle } from '../actions';
+import { setTitle, titleHref } from '../actions';
 import ButtonChange from '../activeButtonsComponents/Change.jsx';
 import ButtonRemove from '../activeButtonsComponents/Remove.jsx'
 import If from '../directives/if';
@@ -14,15 +14,14 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
     return {
-        setTitle: (title) => dispatch(setTitle(title))
+        setTitle: (title) => dispatch(setTitle(title)),
+        titleHref: (href) => dispatch(titleHref(href))
     };
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Index extends React.Component{
-    constructor(){
-        
-        
+    constructor(){       
         super();
 
         this.state = {
@@ -33,11 +32,13 @@ export default class Index extends React.Component{
         
         api.getItem('purchase', this.props.params.id).then(res =>{
             document.title = res.data.title;
+            this.props.titleHref(res.data.href);
             this.props.setTitle(document.title);
         });
     }
 
     componentWillUnmount(){
+        this.props.titleHref('');
     }
 
     render(){

@@ -5,6 +5,14 @@
 .cell{
     display: table-cell;
 }
+.pointer{
+    cursor: pointer;
+}
+.title-href{
+    h1{
+        cursor: pointer;
+    }
+}
 .w-50{
     width: 50%;
 }

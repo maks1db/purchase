@@ -5,7 +5,7 @@ export const request = (type, payload) => {
     };
 };
 
-export const titleHref = (type, payload) => {
+export const titleHref = (payload) => {
     return {
         type: 'TITLE_HREF',
         payload

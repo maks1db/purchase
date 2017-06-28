@@ -1,4 +1,13 @@
-const className = (...agrgs) => {
+const ClassName = (obj) => {
+    let c = '';
+
+    Object.keys(obj).forEach(k => {
+        c += obj[k] ? ' ' + k : '';
+    });
+    return {className: c};
+};
+
+function getClass(...agrgs) {
 
     let first = agrgs[0], obj = {}, str = ''; 
 
@@ -19,6 +28,6 @@ const className = (...agrgs) => {
         });
     }   
     return str;
-};
+}
 
-export default className;
+export default ClassName;

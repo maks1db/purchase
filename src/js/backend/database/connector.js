@@ -5,7 +5,7 @@ let connectionMySQL;
 
 class connector {
     constructor(){
-        connectionMySQL = mysql.createConnection(config);   
+        connectionMySQL = mysql.createConnection(config.mysql);   
     }
 
     config(){
