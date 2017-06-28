@@ -4,6 +4,11 @@
       "password": "kolbaska",
       "database": "purchase",
       "host": "localhost"
+    },
+    "vk": {
+      "id": "",
+      "secret": ""
+
     }
 }
   

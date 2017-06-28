@@ -24,7 +24,7 @@ export default (props) => (
     <TableBody>
         {        
             props.purchases.map(x => 
-                (<TableRow key={x.id}>
+                (<TableRow className="pointer" key={x.id}>
                     <TableRowColumn>{x.title}</TableRowColumn>
                     <TableRowColumn>{x.office}</TableRowColumn>
                     <TableRowColumn>{x.planDate ? dateToString(x.planDate, 'date') : ''}</TableRowColumn>

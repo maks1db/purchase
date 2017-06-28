@@ -6,6 +6,7 @@ import ButtonRemove from '../activeButtonsComponents/Remove.jsx'
 import If from '../directives/if';
 import {browserHistory} from 'react-router';
 import api from '../api';
+import state from '../commonState/purchase';
 
 function mapStateToProps(state){
     return {
@@ -24,8 +25,8 @@ export default class Index extends React.Component{
     constructor(){       
         super();
 
-        this.state = {
-        };
+        this.state = state;
+        this.state.purchase = [];
     }
 
     componentWillMount(){
