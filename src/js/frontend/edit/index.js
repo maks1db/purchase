@@ -31,7 +31,7 @@ export default class Index extends React.Component{
         this.state = {
             id: 0,
             modify: true,
-            title: 'Сало',
+            title: '',
             products: [],
             activeRow: [],
             openDialog: false,

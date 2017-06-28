@@ -10,6 +10,7 @@ export default (props) => (
     title={props.title} 
     stateMenu={props.stateMenu}
     onToggle={props.onToggle} 
+    actionTitle={props.titleHref}
     />
     <Menu 
     onToggle={props.onToggle} 

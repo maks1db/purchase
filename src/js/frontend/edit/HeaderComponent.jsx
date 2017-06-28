@@ -6,6 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import dateToString from '../libs/dateToString';
 import bind from '../directives/bind';
 import constants from './constants';
+import state from '../commonState/purchase';
 
 const Text = (props) => (
     <TextField
@@ -49,18 +50,7 @@ export default class Component extends React.Component {
 
     constructor(){
         super();
-        this.state = {
-            title: '',
-            office: '',
-            paid: false,
-            finished: false,
-            org: '',
-            orgHref: '',
-            href: '',
-            albumHref: '',
-            date: undefined,
-            planDate: undefined
-        };
+        this.state = state;
     }
 
     componentWillReceiveProps(nextProps){

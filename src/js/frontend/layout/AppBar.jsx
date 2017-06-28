@@ -1,23 +1,9 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import className from '../directives/className';
-
-// export default class Component extends React.Component{
-
-//     render(){
-//         return (
-//         <AppBar
-//             className={className({'menu-open': this.props.stateMenu})}
-//             title={this.props.title}
-//             onLeftIconButtonTouchTap={()=>{this.props.onToggle(this.props.stateMenu);}}
-//          >
-//             {this.props.stateMenu && 
-//                 (<div onClick={()=>this.props.onToggle(true)} className="shadow"></div>)
-//             }
-//         </AppBar>
-//         );
-//     }
-// } 
+import Ico from 'material-ui/svg-icons/action/account-box';
+import IconButton from 'material-ui/IconButton';
+import If from '../directives/if';
 
 export default (props) => 
 (
@@ -25,6 +11,12 @@ export default (props) =>
     className={className({'menu-open': props.stateMenu})}
     title={props.title}
     onLeftIconButtonTouchTap={()=>{props.onToggle(props.stateMenu);}}
+    {...If(Object.keys(props.titleHref).length > 0,
+        {
+            onTitleTouchTap: () => {},
+            iconElementLeft: <IconButton><Ico /></IconButton>
+        },
+        {})}
     >
     {props.stateMenu && 
         (<div onClick={()=>props.onToggle(true)} className="shadow"></div>)

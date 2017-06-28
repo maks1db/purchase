@@ -5,6 +5,13 @@ export const request = (type, payload) => {
     };
 };
 
+export const titleHref = (type, payload) => {
+    return {
+        type: 'TITLE_HREF',
+        payload
+    };
+};
+
 export const receive = (type, payload) => {
 
     return {

@@ -8,6 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReduxToastr from 'react-redux-toastr';
 import Main from './main';
 import Edit from './edit';
+import Purchase from './purchase';
 import store from './store';
 import './scss/index.scss';
 import 'react-redux-toastr/src/styles/index.scss';
@@ -28,6 +29,7 @@ class App extends React.Component{
                                 <IndexRoute component={Main}/> 
                                 <Route path="/create" component={Edit} />
                                 <Route path="/edit/:id" component={Edit} />
+                                <Route path="/purchase/:id" component={Purchase} />
                             </Route>        
                         </Router>                        
                     </MuiThemeProvider>

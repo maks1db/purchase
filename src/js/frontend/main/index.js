@@ -41,6 +41,12 @@ export default class Index extends React.Component{
         });
     }
 
+    componentWillReceiveProps(nextProps){
+        if (nextProps.rowState.length > 0){
+            browserHistory.push('/purchase/' + this.state.purchases[nextProps.rowState[0]].id);
+        }
+    }
+
     componentWillUnmount(){
         this.props.setRowState([]);
     }
@@ -56,16 +62,7 @@ export default class Index extends React.Component{
                 bottom={30} 
                 right={30}
                 onTouchTap={() => browserHistory.push('/create')}
-            />
-            {If(this.props.rowState.length > 0,
-                (<div>
-                <ButtonChange 
-                    bottom={100} 
-                    right={30} 
-                    onTouchTap={() => browserHistory.push('/edit/' + this.state.purchases[this.props.rowState[0]].id)}
-                    /><ButtonRemove bottom={30} right={100} /></div>),
-                ''
-            )}                
+            />               
         </div>
         );
     }

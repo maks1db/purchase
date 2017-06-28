@@ -7,7 +7,8 @@ function mapStateToProps(state){
     return {
         title: state.title,
         stateMenu: state.stateMenu,
-        paperDepth: state.paperDepth
+        paperDepth: state.paperDepth,
+        titleHref: state.titleHref
     };
 }
 function mapDispatchToProps(dispatch){
@@ -29,6 +30,7 @@ export default class Index extends React.Component{
             stateMenu = {this.props.stateMenu}
             onToggle = {this.props.toggle}
             paperDepth = {this.props.paperDepth}
+            titleHref = {this.props.titleHref}
         >
         {this.props.children}
         </Component>;
