@@ -4,13 +4,16 @@ var express = require('express'),
 
 router.get('/user', (req, res) => {
     let VK = new vk();
-    const query = req.body;
-    const strings = query.user.split('/');
+
+    const strings = req.body.user.split('/');
     const id = strings[strings.length - 1];
 
-    VK.request('users.get', {user_ids: id, fields: 'photo_100'})
-    .then(x => {
-        var a= 1;
+    VK.setToken()
+    .then(() => {
+        return VK.request('users.get', {user_ids: id, fields: 'photo_100'});
+    })
+    .then((request) => {
+        var a = 1;
     });
 
 });

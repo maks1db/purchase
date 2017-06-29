@@ -1,32 +1,29 @@
-const config = require('../config/config.dev.json');
-const VK = require('vksdk');
+const config = require('../config/');
+const VK = require('vk-io');
 
 
 class VkClass {
     constructor(){
         this.vk = new VK({
-            'appId'     : parseInt(config.vk.id),
-            'appSecret' : config.vk.secret,
-            secure: true,
-            https: true
+            'app' : config.vk.id,
+            'key' : config.vk.secret
         });
-
-        // Setup server access token for server API methods
-        this.vk.on('serverTokenReady', function(_o) {
-            // Here will be server access token
-            this.vk.setToken(_o.access_token);
-        });
-
-        // Turn on requests with access tokens
-        this.vk.setSecureRequests(true);
+        
     }
 
-    request(option){
-        return new Promise((resolve) => {
-            this.vk.request(option.name, option.params || {}, function(res) {
-                resolve(res);
-            });
-        });     
+    setToken(){
+        return this.vk.auth.server()
+        .then((token) => {
+            this.vk.setToken(token);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+
+    request(method, options){
+        return this.vk.api.call(method, options || {});
+            
     }
 }
 
