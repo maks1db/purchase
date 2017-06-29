@@ -7,5 +7,6 @@ export default {
     saveRow: 'SAVE_ROW',
     editRow: 'EDIT_ROW',
     headerChange: 'HEADER_CHANGE',
-    save: 'SAVE'
+    save: 'SAVE',
+    changeOrgHref: 'CHANGE_ORG_HREF'
 };

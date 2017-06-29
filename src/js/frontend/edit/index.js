@@ -138,6 +138,8 @@ export default class Index extends React.Component{
                 this.setState({'products': products,
                             openDialog: false});
                 break;
+            case constants.changeOrgHref: 
+                return api.vk.user(value);
         }
     }
 

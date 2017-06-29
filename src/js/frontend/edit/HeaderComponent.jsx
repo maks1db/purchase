@@ -61,6 +61,22 @@ export default class Component extends React.Component {
 
         const Bind = bind(this, false);
         const event = () => this.props.childEvent(constants.headerChange, this.state);
+
+        const eventChangeHref = () => {
+
+            this.props.childEvent(constants.headerChange, this.state);
+            if (this.state.org === ''){
+                this.props.childEvent(constants.changeOrgHref, this.state.orgHref)
+                .then(result => {
+                    if (result.data.hasOwnProperty('first_name')){
+                        this.setState({
+                            org: `${result.data.first_name} ${result.data.last_name}`
+                        }, () => this.props.childEvent(constants.headerChange, this.state));
+                    }
+                });      
+            }
+            
+        };
         return (<Tabs>
         <Tab label="Закупка">
             <TableGroup>
@@ -104,7 +120,7 @@ export default class Component extends React.Component {
                 <Right>
                     <Text 
                     title="Ссылка на страницу" 
-                    {...Bind.byName('orgHref', event)}
+                    {...Bind.byName('orgHref', eventChangeHref)}
                     />
                 </Right>
             </TableGroup>

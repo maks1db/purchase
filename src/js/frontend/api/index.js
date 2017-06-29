@@ -29,9 +29,14 @@ const getItem = (collection, id) => {
     return axios.get(`${API_PREFIX}/api/${collection}/item/${id}`);  
 };
 
+const vk = {
+    user: (href) => axios.get(`${API_PREFIX}/api/vk/user/`, {params: {user: href}})
+};
+
 export default {
     put, 
     update, 
     get, 
-    getItem
+    getItem,
+    vk
 };
