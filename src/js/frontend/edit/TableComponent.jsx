@@ -43,8 +43,10 @@ export default (props) => {
     });
     return (
 <div style={{padding: '2em 4em'}}>
-    <BtnPack {...props} />
-    <Table onRowSelection={(array)=>props.childEvent(constants.activeRow, array)}>
+    {If(!props.disableEdit, (<BtnPack {...props} />))}
+    <Table 
+        {...If(!props.disableEdit,
+            {onRowSelection:(array)=>props.childEvent(constants.activeRow, array)},{})}>
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>Товар</TableHeaderColumn>
