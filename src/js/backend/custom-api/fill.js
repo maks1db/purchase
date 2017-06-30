@@ -54,5 +54,24 @@ router.get('/office', (req, res) => {
     });
 });
 
+router.get('/orgHref', (req, res) => {
+    
+    const org = req.query.org;
+    const q = squel.select()
+                .field('org_href')
+                .from('purchases')
+                .where(`org = \"${org}\"`)
+                .where('org_href <> ""')
+                .distinct()
+                .order('org_href');
+    
+    const db = new connector();
+    db.query(q.toString())
+    .then(result => {
+        res.json({href: result.length > 0 ? result[0].org_href : ''});
+        db.close();
+    });
+});
+
 
 module.exports = router;

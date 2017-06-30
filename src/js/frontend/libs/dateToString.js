@@ -2,7 +2,7 @@ const addZero = require('./addZeroDate');
 
 function dateToString(date, dateParts='dateTime'){
 
-    if (date === undefined){
+    if (!date){
         return '';
     }
     if (typeof(date) === 'number' || typeof(date) === 'string'){

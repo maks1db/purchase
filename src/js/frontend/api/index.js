@@ -35,7 +35,8 @@ const vk = {
 const fill = {
     org: () => axios.get(`${API_PREFIX}/api/fill/org/`),
     unit: () => axios.get(`${API_PREFIX}/api/fill/unit/`),
-    office: () => axios.get(`${API_PREFIX}/api/fill/office/`)
+    office: () => axios.get(`${API_PREFIX}/api/fill/office/`),
+    orgHref: (org) => axios.get(`${API_PREFIX}/api/fill/orgHref/`, {params: {org}})
 };
 export default {
     put, 

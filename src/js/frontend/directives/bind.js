@@ -29,7 +29,7 @@ class Bind {
             //if get number in state
             value: this.obj.state[name],
             searchText: this.obj.state[name],
-            onUpdateInput:(val)=> this.setState({[name]: val}, event),
+            onUpdateInput:(val)=> this.obj.setState({[name]: val}, event),
             onChange: (e, value) => {
                 this.obj.setState({[name]: this.useTarget ? e.target.value : value}, event);
             }

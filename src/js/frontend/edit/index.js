@@ -195,7 +195,11 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
-            <Header header={this.state.header} fillData={this.state.fillData} childEvent={this.childEvent}/>
+            <Header 
+            orgHref={(name)=>api.fill.orgHref(name)}
+            header={this.state.header} 
+            fillData={this.state.fillData} 
+            childEvent={this.childEvent}/>
             <Table {...this.state} sum={0} fillData={this.state.fillData} childEvent={this.childEvent} />
             <Save 
                 onTouchTap={() => this.childEvent(constants.save, this.state.header)}

@@ -129,9 +129,20 @@ export default class Component extends React.Component {
                 <Left>
                     <AutoComplete
                         floatingLabelText="Организатор"
+                        openOnFocus={true}
                         filter={AutoComplete.fuzzyFilter}
                         dataSource={this.props.fillData.org}
-                        {...Bind.autocomplete('org', event)}
+                        {...Bind.byName('org', event)}
+                        searchText={this.state.org}
+                        onUpdateInput={(org)=> this.setState({org}, () => {
+                            this.props.orgHref(org)
+                            .then(x => {
+                                if (x.data.href !== ''){
+                                    this.setState({orgHref: x.data.href},
+                                    () => this.props.childEvent(constants.headerChange, this.state));
+                                } 
+                            });
+                        })}
                     />   
                 </Left>
                 <Right>
