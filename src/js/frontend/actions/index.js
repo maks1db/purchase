@@ -12,6 +12,13 @@ export const titleHref = (payload) => {
     };
 };
 
+export const setSum = (payload) => {
+    return {
+        type: 'PURCHASE_SUM',
+        payload
+    };
+};
+
 export const receive = (type, payload) => {
 
     return {

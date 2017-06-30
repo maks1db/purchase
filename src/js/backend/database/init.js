@@ -18,11 +18,11 @@ db.query(`CREATE DATABASE IF NOT EXISTS ${db.config().database}`)
         
         return Promise.all(promises).then(() => {
             console.log('All tables create...');
-            return '1';
+            return '0';
         });        
     }
     else{
-        res[0].version;
+        return res[0].version;
     }
 }).then((version) => {
     db.close();

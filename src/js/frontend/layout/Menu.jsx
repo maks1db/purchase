@@ -9,7 +9,6 @@ export default (props) => (
         <MenuItem 
             onClick ={()=>props.onToggle(true)}
             className={'link'}
-            index={true} 
             children={<Link to="/" activeClassName="active">Главная</Link>}
         ></MenuItem>
         <MenuItem 

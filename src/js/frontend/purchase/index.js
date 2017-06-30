@@ -36,7 +36,8 @@ export default class Index extends React.Component{
             date: undefined,
             finished: false,
             paid: false,
-            orgHref: ''
+            orgHref: '',
+            sum: 0
         };
     }
 
@@ -77,6 +78,7 @@ export default class Index extends React.Component{
                 <Table 
                     products={this.state.products}
                     disableEdit={true}
+                    sum={this.state.sum}
                 />
             </ Header>
             <ButtonChange 

@@ -11,6 +11,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import If from '../directives/if';
+import ClassName from '../directives/ClassName';
 import constants from './constants';
 
 const BtnPack = (props) => (
@@ -37,10 +38,10 @@ const BtnPack = (props) => (
     </div>
 );
 export default (props) => {
-    let sum = 0;
-    props.products.forEach((x) => {
-        sum += parseInt(x.count) * parseInt(x.price);  
-    });
+    let sum = props.sum;
+    // props.products.forEach((x) => {
+    //     sum += parseInt(x.count) * parseInt(x.price);  
+    // });
     return (
 <div style={{padding: '2em 4em'}}>
     {If(!props.disableEdit, (<BtnPack {...props} />))}
@@ -72,7 +73,12 @@ export default (props) => {
     </TableBody>
   </Table>
   {props.products.length > 0 && 
-  (<div className="table w-100" style={{paddingTop: '2em', fontSize: '14px', fontWeight: 'bold'}}>
+  (<div  
+    {...ClassName({'table w-100': true, pointer: !props.disableEdit})}
+    style={{paddingTop: '2em', fontSize: '14px', fontWeight: 'bold'}}
+    {...If(!props.disableEdit,
+            {onClick:()=>props.childEvent(constants.dialogStateSum, true)},{})}
+    >
         <div className="cell w-50 p-r-15px p-l-15px">
             Итого
         </div>
