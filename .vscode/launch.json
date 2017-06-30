@@ -63,7 +63,7 @@
             "env": {
                 "NODE_ENV":"dev"
             },
-            "program": "${workspaceRoot}/src/js/backend/database/init.js"
+            "program": "${workspaceRoot}/src/js/backend/database/initdb.js"
         },
         {
             "type": "node",

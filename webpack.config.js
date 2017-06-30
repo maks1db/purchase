@@ -8,12 +8,12 @@ const suffix = isDevelopment? '?sourceMap' : '';
 const webpack = require('webpack');
 const plugins = [];
 if (!isDevelopment){
-    plugins.push(new webpack.LoaderOptionsPlugin({
-        debug: true
-    }));
-    plugins.push(UglifyJSPlugin({
-        extractComments: true
-    }));
+    // plugins.push(new webpack.LoaderOptionsPlugin({
+    //     debug: true
+    // }));
+    // plugins.push(UglifyJSPlugin({
+    //     extractComments: true
+    // }));
 }
 
 module.exports = {

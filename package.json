@@ -1,6 +1,6 @@
 {
   "name": "purchase",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Закупки для супруги",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,11 @@
     "build": "NODE_ENV=production webpack -p",
     "dev": "NODE_ENV=dev node app.js",
     "devinit": "NODE_ENV=dev node src/js/backend/database/init.js",
-    "testCRUD": " NODE_ENV=dev mocha ./src/js/backend/tests/crud.js"
+    "testCRUD": "NODE_ENV=dev mocha ./src/js/backend/tests/crud.js",
+    "devdbinit": "NODE_ENV=dev node src/js/backend/database/initdb.js",
+    "dbinit": "node src/js/backend/database/initdb.js",
+    "init": "node src/js/backend/database/init.js",
+    "prod": "NODE_ENV=dev node app.js"
   },
   "dependencies": {
     "array-sort": "^0.1.2",

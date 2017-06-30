@@ -1,0 +1,14 @@
+{
+    "mysql":{
+      "user": "root",
+      "password": "kolbaska",
+      "database": "purchase",
+      "host": "localhost"
+    },
+    "vk": {
+      "id": "6092848",
+      "secret": ""
+
+    }
+}
+  

@@ -15,8 +15,9 @@ db.query(`CREATE DATABASE IF NOT EXISTS ${db.config().database}`)
     if (res.length === 0){
         let promises = [];
         initTables.forEach(x => promises.push(db.query(x)));
-
+        
         return Promise.all(promises).then(() => {
+            console.log('All tables create...');
             return '1';
         });        
     }
