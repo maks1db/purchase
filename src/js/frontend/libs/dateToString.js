@@ -1,6 +1,6 @@
 const addZero = require('./addZeroDate');
 
-function dateToString(date, dateParts='dateTime'){
+function dateToString(date, dateParts='dateTime', dateDelimiter = '.'){
 
     if (!date){
         return '';
@@ -19,7 +19,9 @@ function dateToString(date, dateParts='dateTime'){
         enableTime = false;
     }
     const z = addZero;
-    return (enableDate? `${z(date.getDate())}.${z(date.getMonth() + 1)}.${date.getFullYear()} ` : '') +
+    return (enableDate? (dateDelimiter !== '.' ?
+     `${date.getFullYear()}${dateDelimiter}${z(date.getMonth() + 1)}${dateDelimiter}${z(date.getDate())} ` :
+     `${z(date.getDate())}${dateDelimiter}${z(date.getMonth() + 1)}${dateDelimiter}${date.getFullYear()} `) : '') +
         (enableTime? `${z(date.getHours())}:${z(date.getMinutes())}:${z(date.getSeconds())}` : '');
 }
 

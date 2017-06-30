@@ -8,7 +8,8 @@ export default (props) => (
     <Drawer open={props.stateMenu}>
         <MenuItem 
             onClick ={()=>props.onToggle(true)}
-            className={'link'} 
+            className={'link'}
+            index={true} 
             children={<Link to="/" activeClassName="active">Главная</Link>}
         ></MenuItem>
         <MenuItem 

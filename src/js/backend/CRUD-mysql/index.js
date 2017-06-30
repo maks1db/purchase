@@ -2,13 +2,17 @@ let squel = require('squel');
 const connector = require('../database/connector');
 const camelcase = require('camelcase');
 const snakecase = require('snake-case');
+const dateToString = require('../../frontend/libs/dateToString');
 
 function toMySqlString(opt, key, item){
     
     if (!opt) return item;
     if ('dateColumns' in opt){
-        if (opt.dateColumns.indexOf(key) >= 0){
-            return new Date(item).toISOString().replace('T', ' ').replace('Z','');
+        if (opt.dateColumns.indexOf(key) >= 0){            
+            if (item === 0){
+                return null;
+            }
+            return dateToString(new Date(item), 'dateTime', '-');
         }
     }
     return item;

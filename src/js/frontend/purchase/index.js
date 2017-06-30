@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { setTitle, titleHref } from '../actions';
 import ButtonChange from '../activeButtonsComponents/Change.jsx';
 import ButtonRemove from '../activeButtonsComponents/Remove.jsx'
+import ButtonAccBox from '../activeButtonsComponents/AccBox.jsx';
+import ButtonShopCart from '../activeButtonsComponents/ShopCart.jsx'
 import If from '../directives/if';
 import {browserHistory} from 'react-router';
 import api from '../api';
@@ -70,6 +72,7 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
+            
             <Header {...this.state}>
                 <Table 
                     products={this.state.products}

@@ -48,11 +48,18 @@ export default class Index extends React.Component{
     childEvent(type, value){
         switch (type){
             case constants.save:
-                let h = this.state.header;
+                let h = {...this.state.header};
                 let sum = 0;
                 this.state.products.forEach((x) => {
                     sum += parseInt(x.count) * parseInt(x.price);  
                 });
+                if (h.date){
+                    h.date = h.date.valueOf() < 0 ? 0 : h.date.valueOf();
+                }
+
+                if (h.planDate){
+                    h.planDate = h.planDate.valueOf() < 0 ? 0 : h.planDate.valueOf();
+                }
                 h.sum = sum;
                 delete h.id;
                 const saveRows = (id) => {
@@ -154,8 +161,8 @@ export default class Index extends React.Component{
             api.getItem('purchase',id)
             .then(result => {
                 let data = result.data;
-                if (data.date) data.date = new Date(data.date);
-                if (data.planDate) data.planDate = new Date(data.planDate);
+                if (data.date) data.date = new Date(data.date).valueOf() <= 0 ? undefined : new Date(data.date);
+                if (data.planDate) data.planDate = new Date(data.planDate).valueOf() <= 0 ? undefined : new Date(data.planDate);
                 this.setState({header: data});
                 document.title = data.title;
                 this.props.setTitle(data.title);
