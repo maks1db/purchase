@@ -35,7 +35,7 @@ app.use('/api/product', new CRUD('products').init('item'));
 app.use('/api/vk',      VK);
 app.use('/api/fill',    fill);
 app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname, '', '/public/assets/index.html'));
+     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 // app.use('/api/cashRegister', new CRUD(models.cashRegister).init('item'));
 // app.use('/api/settings', new CRUD(models.settings).init('item'));
