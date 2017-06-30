@@ -37,7 +37,8 @@ export default class Index extends React.Component{
             openDialog: false,
             row: {},
             header: {},
-            sum: 0
+            sum: 0,
+            fillData: {org: [], unit: [], office: []}
         };
 
         //bind events
@@ -173,8 +174,17 @@ export default class Index extends React.Component{
             document.title = "Новая закупка";
         }
 
-        api.fill.org().then(x => {
-            var a = 1;
+        Promise.all([
+            api.fill.org(),
+            api.fill.office(),
+            api.fill.unit()
+        ])
+        .then(x => {
+            this.setState({fillData: {
+                org: x[0].data,
+                office: x[1].data,
+                unit: x[2].data
+            }})
         })
     }
 
@@ -185,8 +195,8 @@ export default class Index extends React.Component{
     render(){
         return (
         <div>
-            <Header header={this.state.header} childEvent={this.childEvent}/>
-            <Table {...this.state} sum={0} childEvent={this.childEvent} />
+            <Header header={this.state.header} fillData={this.state.fillData} childEvent={this.childEvent}/>
+            <Table {...this.state} sum={0} fillData={this.state.fillData} childEvent={this.childEvent} />
             <Save 
                 onTouchTap={() => this.childEvent(constants.save, this.state.header)}
                 bottom={30} 

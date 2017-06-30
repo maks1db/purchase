@@ -33,7 +33,9 @@ const vk = {
     user: (href) => axios.get(`${API_PREFIX}/api/vk/user/`, {params: {user: href}})
 };
 const fill = {
-    org: () => axios.get(`${API_PREFIX}/api/fill/org/`)
+    org: () => axios.get(`${API_PREFIX}/api/fill/org/`),
+    unit: () => axios.get(`${API_PREFIX}/api/fill/unit/`),
+    office: () => axios.get(`${API_PREFIX}/api/fill/office/`)
 };
 export default {
     put, 

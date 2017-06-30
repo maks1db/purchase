@@ -5,6 +5,7 @@ import constants from './constants';
 import TextField from 'material-ui/TextField';
 import bind from '../directives/bind';
 import If from '../directives/if';
+import AutoComplete from 'material-ui/AutoComplete';
 
 const Text = (props) => (
     <div style={{textAlign:'center'}}>
@@ -75,10 +76,16 @@ export default class Component extends React.Component {
                 type="number"
                 {...bind(this).byName('count')}
                 />
-                <Text 
-                title="Единица измерения"
-                {...bind(this).byName('unit')}
+                <div style={{textAlign:'center'}}>
+                <AutoComplete
+                    floatingLabelText="Единица измерения"
+                    filter={AutoComplete.noFilter}
+                    openOnFocus={true}
+                    dataSource={this.props.fillData.unit}
+                    {...bind(this).byName('unit')}
+                    onUpdateInput={(unit)=> this.setState({unit})}
                 />
+                </div>
                 <Text 
                 title="Цена"
                 type="number"

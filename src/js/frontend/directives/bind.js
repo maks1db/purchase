@@ -24,6 +24,18 @@ class Bind {
         };  
     }
 
+    autocomplete(name,event){
+        return {
+            //if get number in state
+            value: this.obj.state[name],
+            searchText: this.obj.state[name],
+            onUpdateInput:(val)=> this.setState({[name]: val}, event),
+            onChange: (e, value) => {
+                this.obj.setState({[name]: this.useTarget ? e.target.value : value}, event);
+            }
+        };  
+    }
+
     byName(name, event){
         return {
             value: this.obj.state[name],

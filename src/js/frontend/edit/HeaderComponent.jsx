@@ -6,6 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import dateToString from '../libs/dateToString';
 import bind from '../directives/bind';
 import constants from './constants';
+import AutoComplete from 'material-ui/AutoComplete';
 
 const Text = (props) => (
     <TextField
@@ -59,8 +60,7 @@ export default class Component extends React.Component {
             href: '',
             albumHref: '',
             date: undefined,
-            planDate: undefined,
-            orgData: []
+            planDate: undefined
         };
     }
 
@@ -101,10 +101,14 @@ export default class Component extends React.Component {
                     
                     <TableGroup>
                         <Left>
-                            <Text 
-                            title="Офис"
-                            {...Bind.byName('office', event)} 
-                            />    
+                            <AutoComplete
+                                floatingLabelText="Офис"
+                                filter={AutoComplete.noFilter}
+                                openOnFocus={true}
+                                dataSource={this.props.fillData.office}
+                                {...Bind.byName('office', event)}
+                                onUpdateInput={(office)=> this.setState({office}, event)}
+                            />   
                         </Left>
                         <Right>
                             <Checkbox
@@ -123,10 +127,12 @@ export default class Component extends React.Component {
         <Tab label="Организатор">
             <TableGroup>
                 <Left>
-                    <Text 
-                    title="Организатор" 
-                    {...Bind.byName('org', event)}
-                    />  
+                    <AutoComplete
+                        floatingLabelText="Организатор"
+                        filter={AutoComplete.fuzzyFilter}
+                        dataSource={this.props.fillData.org}
+                        {...Bind.autocomplete('org', event)}
+                    />   
                 </Left>
                 <Right>
                     <Text 
