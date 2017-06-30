@@ -1,4 +1,5 @@
 import React from 'react';
+import ClassName from '../directives/ClassName';
 import {
   Table,
   TableBody,
@@ -24,7 +25,7 @@ export default (props) => (
     <TableBody>
         {        
             props.purchases.map(x => 
-                (<TableRow className="pointer" key={x.id}>
+                (<TableRow {...ClassName({pointer: true, paid: x.paid})} key={x.id}>
                     <TableRowColumn>{x.title}</TableRowColumn>
                     <TableRowColumn>{x.office}</TableRowColumn>
                     <TableRowColumn>{x.planDate ? dateToString(x.planDate, 'date') : ''}</TableRowColumn>

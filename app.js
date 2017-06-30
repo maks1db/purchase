@@ -4,6 +4,7 @@ const bodyParser    = require('body-parser');
 const path          = require('path');
 const CRUD          = require('./src/js/backend/CRUD-mysql');
 const VK            = require('./src/js/backend/custom-api/vk');
+const fill          = require('./src/js/backend/custom-api/fill');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/api/purchase', new CRUD('purchases',{
 }).init('item'));
 app.use('/api/product', new CRUD('products').init('item'));
 app.use('/api/vk',      VK);
+app.use('/api/fill',    fill);
 // app.use('/api/cashRegister', new CRUD(models.cashRegister).init('item'));
 // app.use('/api/settings', new CRUD(models.settings).init('item'));
 // app.use('/api', data1c);

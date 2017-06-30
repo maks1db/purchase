@@ -32,11 +32,14 @@ const getItem = (collection, id) => {
 const vk = {
     user: (href) => axios.get(`${API_PREFIX}/api/vk/user/`, {params: {user: href}})
 };
-
+const fill = {
+    org: () => axios.get(`${API_PREFIX}/api/fill/org/`)
+};
 export default {
     put, 
     update, 
     get, 
     getItem,
-    vk
+    vk,
+    fill
 };

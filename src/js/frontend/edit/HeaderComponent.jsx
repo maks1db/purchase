@@ -59,7 +59,8 @@ export default class Component extends React.Component {
             href: '',
             albumHref: '',
             date: undefined,
-            planDate: undefined
+            planDate: undefined,
+            orgData: []
         };
     }
 

@@ -172,6 +172,10 @@ export default class Index extends React.Component{
             this.props.setTitle('Новая закупка');
             document.title = "Новая закупка";
         }
+
+        api.fill.org().then(x => {
+            var a = 1;
+        })
     }
 
     componentWillUnmount(){

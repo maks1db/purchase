@@ -73,14 +73,17 @@ class CRUD {
         else{
 
             const get = req.query.query;
-            const sort = req.query.sort;
+            let sort = req.query.sort;
             const limit = req.query.limit || 0;
 
             if (get){
                 get.forEach(x => q.where(x));
             }
             if (sort){
-                Object.keys(JSON.parse(sort)).forEach(x => q.sort(snakecase(x.key), x.value));
+                sort = JSON.parse(sort);
+                Object.keys(sort).forEach(x => {
+                    q.order(snakecase(x), sort[x]);
+                });
             }
 
             q.limit(limit);
