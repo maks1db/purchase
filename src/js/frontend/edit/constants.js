@@ -9,5 +9,6 @@ export default {
     editRow: 'EDIT_ROW',
     headerChange: 'HEADER_CHANGE',
     save: 'SAVE',
-    changeOrgHref: 'CHANGE_ORG_HREF'
+    changeOrgHref: 'CHANGE_ORG_HREF',
+    modify: 'MODIFY'
 };

@@ -37,6 +37,7 @@ export default class Index extends React.Component{
             finished: false,
             paid: false,
             orgHref: '',
+            comment: '',
             sum: 0
         };
     }

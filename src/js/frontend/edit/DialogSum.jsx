@@ -43,6 +43,7 @@ export default class Component extends React.Component {
                 primary={true}
                 onTouchTap={() => {
                     this.props.setSum(this.state.sum);
+                    this.props.childEvent(constants.modify, true);
                     eventClose();
                 }
                 }

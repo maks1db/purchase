@@ -33,7 +33,7 @@ export default class Index extends React.Component{
 
         this.state = {
             id: 0,
-            modify: true,
+            modify: false,
             title: '',
             products: [],
             activeRow: [],
@@ -53,9 +53,6 @@ export default class Index extends React.Component{
             case constants.save:
                 let h = {...this.state.header};
                 let sum = this.props.sum;
-                // this.state.products.forEach((x) => {
-                //     sum += parseInt(x.count) * parseInt(x.price);  
-                // });
                 if (h.date){
                     h.date = h.date.valueOf() < 0 ? 0 : h.date.valueOf();
                 }
@@ -84,13 +81,15 @@ export default class Index extends React.Component{
                         saveRows(res.data.id).then(resRows =>{
                             this.setState({id: res.data.id});
                             toastr.success('Сохранение', 'Данные успешно сохранены');
+                            this.setState({modify: false});
                         });
                     });
                 }
                 else{
                     api.update('purchase', this.state.id, h).then(x=> {
                         saveRows(this.state.id).then(resRows =>{
-                            toastr.success('Сохранение', 'Данные успешно сохранены')
+                            toastr.success('Сохранение', 'Данные успешно сохранены');
+                            this.setState({modify: false});
                         });
                     });
                 }
@@ -98,11 +97,14 @@ export default class Index extends React.Component{
             case constants.activeRow:
                 this.setState({activeRow: value});
                 break;
+            case constants.modify:
+                this.setState({modify: value});
+                break;
             case constants.deleteRow:
                 if (value.length > 0){
                     let arr = [...this.state.products];
                     arr.splice(value[0],1);
-                    this.setState({products: arr});
+                    this.setState({products: arr, modify: true});
                 }       
                 break;
             case constants.dialogState:
@@ -130,14 +132,13 @@ export default class Index extends React.Component{
                 }       
                 break;
             case constants.headerChange:
-                this.setState({header: value});
+                this.setState({header: value, modify: true});
                 break;
             case constants.saveRow:
                 let products = [];
 
                 let sumBefore = 0;
                 this.state.products.forEach(x=>sumBefore += x.price * x.count);
-
                 
                 if (value.id){
                     products = [...this.state.products].map(x => {
@@ -155,7 +156,7 @@ export default class Index extends React.Component{
                 }
 
                 this.setState({'products': products,
-                            openDialog: false});
+                            openDialog: false, modify: true});
                 break;
             case constants.changeOrgHref: 
                 return api.vk.user(value);

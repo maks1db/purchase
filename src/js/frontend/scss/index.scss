@@ -45,3 +45,26 @@ body{
         font-weight: bold;
     }
 }
+
+@keyframes comment-show{
+    0%{
+        transform: scale(.3);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.comment{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pre{
+        animation: comment-show cubic-bezier(0.215, 0.610, 0.355, 1) .4s;
+        background: rgba(0,0,0,.7);
+        color:#fff;
+        border-radius: 4px;
+        box-shadow: 1px 2px 5px rgba(0,0,0,.3);
+        padding: 12px;
+    }
+    
+}

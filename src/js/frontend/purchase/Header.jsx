@@ -31,6 +31,12 @@ export default (props) => (
 
         />
         <CardText>
+            {If(props.comment,
+                (
+            <blockquote className="comment">
+                <pre>{props.comment}</pre>    
+            </blockquote>))}
+            
             {props.children}
         </CardText>
       </Card>

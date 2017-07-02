@@ -60,7 +60,8 @@ export default class Component extends React.Component {
             href: '',
             albumHref: '',
             date: undefined,
-            planDate: undefined
+            planDate: undefined,
+            comment: ''
         };
     }
 
@@ -152,6 +153,14 @@ export default class Component extends React.Component {
                     />
                 </Right>
             </TableGroup>
+            <div className="p-r-15px p-l-15px">
+            <Text 
+                title="Комментарий"
+                {...Bind.byName('comment', event)}
+                multiLine={true}
+                rowsMax={3}
+            />
+            </div>
         </Tab>
         <Tab label="Ссылки">
             <TableGroup>
