@@ -1,6 +1,7 @@
 import React from 'react';
 import ActionButton from './ActionButton.jsx';
 import Create from 'material-ui/svg-icons/content/create';
+import IconButton from 'material-ui/IconButton';
 
 const keys = ['bottom', 'top', 'left', 'right'];
 

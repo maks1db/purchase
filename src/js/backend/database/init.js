@@ -3,6 +3,7 @@ const db = new connector();
 const createTable = require('./q/create-table');
 const squel = require('squel');
 const initTables = require('./init-tables');
+const migrate = require('../migrations');
 
 db.query(`CREATE DATABASE IF NOT EXISTS ${db.config().database}`)
 .then(() => db.query(createTable('migrations', {version: 'VARCHAR(16)', date: 'DATETIME'})))
@@ -25,6 +26,7 @@ db.query(`CREATE DATABASE IF NOT EXISTS ${db.config().database}`)
         return res[0].version;
     }
 }).then((version) => {
+    migrate(version);  
     db.close();
 });
 

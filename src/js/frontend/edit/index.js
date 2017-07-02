@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setTitle, setPaperDepth, setSum } from '../actions';
 import If from '../directives/if';
 import Save from '../activeButtonsComponents/Save.jsx';
+import Total from '../activeButtonsComponents/ShopCart.jsx';
 import Header from './HeaderComponent.jsx';
 import Table from './TableComponent.jsx';
 import constants from './constants';
@@ -230,6 +231,21 @@ export default class Index extends React.Component{
                 right={30} 
                 {...If(this.state.modify, {secondary:true}, {primary:true})} 
             />  
+            {If(this.state.products.length > 0,
+                (<Total 
+                bottom={180} 
+                left={30}
+                mini={true}
+                secondary={true}
+                onTouchTap={()=>{
+                    let sum = 0;
+                    this.state.products.forEach((x) => {
+                        sum += parseInt(x.count) * parseInt(x.price);  
+                    });
+                    this.props.setSum(sum);
+                }}
+            />))
+            }
             <Dialog {...this.state} childEvent={this.childEvent} />  
             <DialogSum {...this.state} 
                 sum={this.props.sum} 
