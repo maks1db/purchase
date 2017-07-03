@@ -44,6 +44,12 @@ class Bind {
             }
         };
     }
+
+    byFunc(name, obj){
+        let objMain = {value: this.obj.state[name]};
+        objMain[Object.keys(obj)[0]] = obj[Object.keys(obj)[0]];
+        return objMain;
+    }
 }
 
 module.exports = (obj, useTarget) => new Bind(obj, useTarget);

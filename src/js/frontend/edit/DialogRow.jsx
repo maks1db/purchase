@@ -24,8 +24,8 @@ export default class Component extends React.Component {
         this.state = {
             id: 0,
             product: '',
-            price: 0,
-            count: 0,
+            price: '',
+            count: '',
             unit: 'шт.',
             itNew: true
         }; 
@@ -74,7 +74,11 @@ export default class Component extends React.Component {
                 <Text 
                 title="Количество"
                 type="number"
-                {...bind(this).byName('count')}
+                {...bind(this).byFunc('count', {
+                    onChange: (e, val) => {
+                        this.setState({count: parseInt(val).toString()});
+                    }
+                })}
                 />
                 <div style={{textAlign:'center'}}>
                 <AutoComplete
@@ -89,7 +93,11 @@ export default class Component extends React.Component {
                 <Text 
                 title="Цена"
                 type="number"
-                {...bind(this).byName('price')}
+                {...bind(this).byFunc('price', {
+                    onChange: (e, val) => {
+                        this.setState({price: parseInt(val).toString()});
+                    }
+                })}
                 />
                 <Text 
                 title="Сумма"

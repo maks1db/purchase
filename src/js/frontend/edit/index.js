@@ -230,7 +230,7 @@ export default class Index extends React.Component{
                 onTouchTap={() => this.childEvent(constants.save, this.state.header)}
                 bottom={30} 
                 right={30} 
-                {...If(this.state.modify, {secondary:true}, {primary:true})} 
+                {...If(this.state.modify, {secondary:true}, {})} 
             />  
             {If(this.state.products.length > 0,
                 (<Total 
