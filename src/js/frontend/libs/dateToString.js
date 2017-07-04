@@ -19,10 +19,10 @@ function dateToString(date, dateParts='dateTime', dateDelimiter = '.'){
         enableTime = false;
     }
     const z = addZero;
-    return (enableDate? (dateDelimiter !== '.' ?
+    return ((enableDate? (dateDelimiter !== '.' ?
      `${date.getFullYear()}${dateDelimiter}${z(date.getMonth() + 1)}${dateDelimiter}${z(date.getDate())} ` :
      `${z(date.getDate())}${dateDelimiter}${z(date.getMonth() + 1)}${dateDelimiter}${date.getFullYear()} `) : '') +
-        (enableTime? `${z(date.getHours())}:${z(date.getMinutes())}:${z(date.getSeconds())}` : '');
+        (enableTime? `${z(date.getHours())}:${z(date.getMinutes())}:${z(date.getSeconds())}` : '')).trim();
 }
 
 module.exports = dateToString;

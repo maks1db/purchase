@@ -3,4 +3,5 @@ describe('Testing libs', () => {
     require('./beginDay'); 
     require('./dateFromString'); 
     require('./dateToString');
+    require('./secondsToTime');
 });

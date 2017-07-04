@@ -2,7 +2,7 @@ var lib = require('../beginDay');
 var expect = require('chai').expect;
 
 module.exports = 
-describe('- beginDate', () => {
+describe('- beginDay', () => {
 
     const date = new Date();
     const result = lib(date);

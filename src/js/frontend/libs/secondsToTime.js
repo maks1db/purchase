@@ -14,11 +14,7 @@ const secondsToTime = function (value) {
         h = h - (h % 1);
     }
 
-   // function format(value) {
-   //     return ("" + value).length == 1 ? "0" + value : value;
-   // }
-
-    return addZero(min) + ":" + addZero(sec);
+    return addZero(min) + ':' + addZero(sec);
 };
 
 module.exports = secondsToTime;
