@@ -1,4 +1,4 @@
-const addZero = require("./addZeroDate");
+const addZero = require('./addZeroDate');
 
 const secondsToTime = function (value) {
 

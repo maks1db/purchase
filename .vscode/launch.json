@@ -25,7 +25,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "VK",
+            "name": "fronttest",
             "env": {
                 "NODE_ENV":"dev"
             },
@@ -36,7 +36,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceRoot}/src/js/backend/tests/vk.js"
+                "${workspaceRoot}/src/js/frontend/libs/test/beginDay.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },
