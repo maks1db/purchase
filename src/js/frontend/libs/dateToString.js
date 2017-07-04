@@ -9,6 +9,10 @@ function dateToString(date, dateParts='dateTime', dateDelimiter = '.'){
         date = new Date(date);
     }    
 
+    if (date.valueOf() === 0){
+        return '';
+    }
+
     let enableDate = true, enableTime = true;
 
     if (dateParts === 'time'){

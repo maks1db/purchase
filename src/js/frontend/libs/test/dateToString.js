@@ -111,4 +111,12 @@ describe('- dateToString', () => {
         expect(hDate[2]).to.eql(addZero(date.getSeconds()));
 
     });
+
+    it('check zero date', function() {
+        
+        expect(lib(new Date(1970,0,1,3,0,0))).to.be.a('string').empty;
+        expect(lib(new Date(0))).to.be.a('string').empty;
+        expect(lib('')).to.be.a('string').empty;
+
+    });
 });
