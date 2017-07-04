@@ -1,8 +1,9 @@
 const initialState = 0;
+import constants from '../constants';
 
 function reducer(state = initialState, action){
     switch (action.type){
-    case 'PURCHASE_SUM':
+    case constants.PURCHASE_SUM:
         return action.payload;
     default:
         return state;

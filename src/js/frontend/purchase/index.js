@@ -19,7 +19,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return {
         setTitle: (title) => dispatch(setTitle(title)),
-        titleHref: (href) => dispatch(titleHref(href))
+        titleHref: (href, albumHref) => dispatch(titleHref(href, albumHref))
     };
 }
 
@@ -46,7 +46,7 @@ export default class Index extends React.Component{
         
         api.getItem('purchase', this.props.params.id).then(res =>{
             document.title = res.data.title;
-            this.props.titleHref({href: res.data.href, albumHref: res.data.albumHref});
+            this.props.titleHref(res.data.href, res.data.albumHref);
             this.props.setTitle(document.title + (res.data.finished ? ' (получено)' : ''));
             this.setState({...res.data});
             api.vk.user(res.data.orgHref).then(vk => {

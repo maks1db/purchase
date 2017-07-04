@@ -1,71 +1,64 @@
-export const request = (type, payload) => {
+// export const request = (type, payload) => {
+//     return {
+//         type: 'REQUEST_' + type,
+//         payload: payload
+//     };
+// };
+import constants from '../constants';
+export const titleHref = (href, albumHref) => {
     return {
-        type: 'REQUEST_' + type,
-        payload: payload
-    };
-};
-
-export const titleHref = (payload) => {
-    return {
-        type: 'TITLE_HREF',
-        payload
+        type: constants.TITLE_HREF,
+        payload: {href, albumHref}
     };
 };
 
 export const setSum = (payload) => {
     return {
-        type: 'PURCHASE_SUM',
+        type: constants.PURCHASE_SUM,
         payload
     };
 };
 
-export const receive = (type, payload) => {
+// export const receive = (type, payload) => {
 
-    return {
-        type: 'RECEIVE_' + type,
-        payload: payload
-    };
-};
+//     return {
+//         type: 'RECEIVE_' + type,
+//         payload: payload
+//     };
+// };
 
 export const setPaperDepth = (value) => {
     return {
-        type: 'MAIN_PAPER_DEPTH',
+        type: constants.MAIN_PAPER_DEPTH,
         payload: value
     };
 };
 
 export const setTitle = title => {
     return {
-        type: 'CHANGE_TITLE',
+        type: constants.CHANGE_TITLE,
         payload: title
     };
 };
 
 export const setRowState = arr => {
     return {
-        type: 'ROW_STATE',
+        type: constants.ROW_STATE,
         payload: arr
     };
 }; 
 
-export const setActiveMenu = (name) =>{
-    return {
-        type: 'ACTIVE_MENU',
-        payload: name
-    };
-};
-
 export const toggleMenu = state =>{
     return {
-        type: 'TOGGLE_MENU',
+        type: constants.TOGGLE_MENU,
         payload: state
     };
 };
 
-export const fetchTrainings = () => dispatch => {
-    dispatch(request('TRAININGS', []));
-    return api.trainings().then(data => {
+// export const fetchTrainings = () => dispatch => {
+//     dispatch(request('TRAININGS', []));
+//     return api.trainings().then(data => {
         
-        dispatch(receive('TRAININGS', data.data));
-    });
-};
+//         dispatch(receive('TRAININGS', data.data));
+//     });
+// };

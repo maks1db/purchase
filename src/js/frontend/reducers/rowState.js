@@ -1,8 +1,9 @@
 const initialState = [];
+import constants from '../constants';
 
 function reducer(state = initialState, action){
     switch (action.type){
-    case 'ROW_STATE':
+    case constants.ROW_STATE:
         return action.payload;
     default:
         return state;

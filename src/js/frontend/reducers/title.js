@@ -1,8 +1,9 @@
 const initialState = 'Главная страница';
+import constants from '../constants';
 
 function title(state = initialState, action){
     switch (action.type){
-    case 'CHANGE_TITLE':
+    case constants.CHANGE_TITLE:
         return action.payload;
     default:
         return state;
