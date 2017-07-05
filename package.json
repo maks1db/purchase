@@ -13,7 +13,7 @@
     "dbinit": "node src/js/backend/database/initdb.js",
     "init": "node src/js/backend/database/init.js",
     "prod": "NODE_ENV=dev node app.js",
-    "testfront": "mocha --compilers js:babel-core/register ./src/js/frontend/**/test/index.test.js"
+    "testfront": "mocha --compilers js:babel-core/register ./src/js/frontend/**/test/*.test.js"
   },
   "dependencies": {
     "array-sort": "^0.1.2",
@@ -62,7 +62,8 @@
     "url-loader": "^0.5.8",
     "mocha": "^3.2.0",
     "supertest": "^3.0.0",
-    "chai": "^4.0.2"
+    "chai": "^4.0.2",
+    "enzyme": "^2.9.1"
   },
   "author": "Skvortsov Maksim",
   "license": "ISC"

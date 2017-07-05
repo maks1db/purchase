@@ -35,8 +35,9 @@
                 "tdd",
                 "--timeout",
                 "999999",
+                "--compilers js:babel-core/register",
                 "--colors",
-                "${workspaceRoot}/src/js/frontend/actions/test/index.test.js"
+                "${workspaceRoot}/src/js/frontend/**/test/*.test.js"
             ],
             "internalConsoleOptions": "openOnSessionStart"
         },
