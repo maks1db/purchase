@@ -13,7 +13,7 @@
     "dbinit": "node src/js/backend/database/initdb.js",
     "init": "node src/js/backend/database/init.js",
     "prod": "NODE_ENV=dev node app.js",
-    "testfront": "mocha --compilers js:babel-core/register ./src/js/frontend/**/test/*.test.js"
+    "testfront": "mocha --require ./src/js/frontend/test/helpers/setup.js --compilers js:babel-core/register ./src/js/frontend/**/test/*.test.js"
   },
   "dependencies": {
     "array-sort": "^0.1.2",
@@ -65,7 +65,9 @@
     "chai": "^4.0.2",
     "enzyme": "^2.9.1",
     "react-addons-test-utils": "^15.6.0",
-    "react-test-renderer": "^15.6.1"
+    "react-test-renderer": "^15.6.1",
+    "jsdom": "^11.1.0",
+    "sinon": "^2.3.6"
   },
   "author": "Skvortsov Maksim",
   "license": "ISC"
