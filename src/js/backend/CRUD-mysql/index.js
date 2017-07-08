@@ -9,7 +9,7 @@ function toMySqlString(opt, key, item){
     if (!opt) return item;
     if ('dateColumns' in opt){
         if (opt.dateColumns.indexOf(key) >= 0){            
-            if (item === 0){
+            if (!item){
                 return null;
             }
             return dateToString(new Date(item), 'dateTime', '-');

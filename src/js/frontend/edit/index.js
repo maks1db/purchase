@@ -52,6 +52,12 @@ export default class Index extends React.Component{
         switch (type){
             case constants.save:
                 let h = {...this.state.header};
+                if (h.finished && !h.date){
+                    h.date = new Date();
+                    this.setState({
+                        header: h
+                    })
+                }
                 let sum = this.props.sum;
                 if (h.date){
                     h.date = h.date.valueOf() < 0 ? 0 : h.date.valueOf();

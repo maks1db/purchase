@@ -33,7 +33,7 @@ const Right = (props) => (
         {props.children} 
     </div>
 );
-const Date = (props) => (
+const DateComponent = (props) => (
     <DatePicker 
         autoOk={true}
         formatDate={date => dateToString(date, 'date')} 
@@ -66,7 +66,11 @@ export default class Component extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({...nextProps.header});
+        let h = nextProps.header;
+        if (typeof(h.date) === 'number' ){
+            h.date = new Date(h.date);
+        }
+        this.setState({...h});
     }
 
     render(){
@@ -181,13 +185,13 @@ export default class Component extends React.Component {
         <Tab label="Периоды">
             <TableGroup>
                 <Left>
-                    <Date 
+                    <DateComponent 
                     title="Дата доставки (плановая)"
                     {...Bind.byName('planDate', event)}
                     />   
                 </Left>
                 <Right>
-                    <Date 
+                    <DateComponent 
                     title="Дата доставки"
                     {...Bind.byName('date', event)}
                     />
