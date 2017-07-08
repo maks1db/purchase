@@ -86,6 +86,7 @@ export default class Component extends React.Component {
                     filter={AutoComplete.noFilter}
                     openOnFocus={true}
                     dataSource={this.props.fillData.unit}
+                    searchText={this.state.unit}
                     {...bind(this).byName('unit')}
                     onUpdateInput={(unit)=> this.setState({unit})}
                 />
