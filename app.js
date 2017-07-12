@@ -5,10 +5,15 @@ const path          = require('path');
 const CRUD          = require('./src/js/backend/CRUD-mysql');
 const VK            = require('./src/js/backend/custom-api/vk');
 const fill          = require('./src/js/backend/custom-api/fill');
+const config        = require('./package.json');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/',express.static(path.join(__dirname, 'public/favicon.ico')));
+app.use('/assets',express.static(path.join(__dirname, 'public/assets')));
+
+app.set('views', path.join(__dirname, 'src/js/backend/views'));
+app.set('view engine', 'ejs');
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -35,11 +40,9 @@ app.use('/api/product', new CRUD('products').init('item'));
 app.use('/api/vk',      VK);
 app.use('/api/fill',    fill);
 app.get('*',function(req,res){
-     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    //res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    res.render('index.ejs', {version: config.version});
 });
-// app.use('/api/cashRegister', new CRUD(models.cashRegister).init('item'));
-// app.use('/api/settings', new CRUD(models.settings).init('item'));
-// app.use('/api', data1c);
 
 app.listen(port, ()=> console.log('Server PURCHASE RUNNING on ' + port));
 

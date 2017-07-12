@@ -1,6 +1,6 @@
 {
   "name": "purchase",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "Закупки для супруги",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "devdbinit": "NODE_ENV=dev node src/js/backend/database/initdb.js",
     "dbinit": "node src/js/backend/database/initdb.js",
     "init": "node src/js/backend/database/init.js",
-    "prod": "NODE_ENV=dev node app.js",
+    "prod": "node app.js",
     "testfront": "mocha --require ./src/js/frontend/test/helpers/setup.js --compilers js:babel-core/register ./src/js/frontend/**/test/*.test.js"
   },
   "dependencies": {
@@ -35,7 +35,8 @@
     "redux-thunk": "^2.2.0",
     "snake-case": "2.1.0",
     "squel": "5.10.0",
-    "vk-io": "3.1.7"
+    "vk-io": "3.1.7",
+    "ejs": "~2.5.6"
   },
   "devDependencies": {
     "babel": "~6.5.2",
