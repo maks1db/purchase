@@ -10,6 +10,10 @@ const update = (collection, id, data) => {
     return axios.post(`${API_PREFIX}/api/${collection}/item/${id}`, data);
 };
 
+const del = (collection, id) => {
+    return axios.delete(`${API_PREFIX}/api/${collection}/item/${id}`);
+}; 
+
 const get = (collection, options = {}) => {
 
     let query = [],
@@ -44,5 +48,6 @@ export default {
     get, 
     getItem,
     vk,
-    fill
+    fill,
+    delete: del
 };

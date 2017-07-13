@@ -8,7 +8,7 @@ import constants from '../constants';
 export const titleHref = (href, albumHref) => {
     return {
         type: constants.TITLE_HREF,
-        payload: {href, albumHref}
+        payload: href === '' && albumHref === '' ? {} : {href, albumHref}
     };
 };
 

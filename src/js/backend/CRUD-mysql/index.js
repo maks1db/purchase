@@ -122,12 +122,24 @@ class CRUD {
         .from(this.table)
         .where(`id = ${id}`);
 
-        db.query(q.toString())
-        .then(result => {
-            res.json({result: result.affectedRows === 1});
-            db.close();
+        new Promise((resolve) => {
+            if ('onDeleteQuery' in this.options){
+                db.query(this.options.onDeleteQuery(id, squel))
+                .then((result) => {
+                    resolve(true);
+                });
+            }
+            else{
+                resolve(true);
+            }
+        })
+        .then(() => {
+            db.query(q.toString())
+            .then(result => {
+                res.json({result: result.affectedRows === 1});
+                db.close();
+            });
         });
-
     }
 
     post(req, res){

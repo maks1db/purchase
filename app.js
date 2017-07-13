@@ -34,7 +34,8 @@ const port = 8000;
 
 app.use('/api/purchase', new CRUD('purchases',{
     dateColumns: ['date', 'planDate'],
-    onSaveQuery: (id, q) => q.delete().from('products').where(`purchase_id = ${id}`)
+    onSaveQuery: (id, q) => q.delete().from('products').where(`purchase_id = ${id}`),
+    onDeleteQuery: (id, q) => q.delete().from('products').where(`purchase_id = ${id}`)
 }).init('item'));
 app.use('/api/product', new CRUD('products').init('item'));
 app.use('/api/vk',      VK);

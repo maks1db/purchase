@@ -10,6 +10,7 @@ import {browserHistory} from 'react-router';
 import api from '../api';
 import Header from './Header.jsx';
 import Table from '../edit/TableComponent.jsx'
+import {toastr} from 'react-redux-toastr';    
 
 function mapStateToProps(state){
     return {
@@ -68,10 +69,15 @@ export default class Index extends React.Component{
     }
 
     componentWillUnmount(){
-        this.props.titleHref({});
+        this.props.titleHref('','');
     }
 
     render(){
+        const toastrConfirmOptions = {
+            onOk: () => api.delete('purchase', this.props.params.id).then(() => browserHistory.push('/') ),
+            okText: 'Удалить',
+            cancelText: 'Отмена'
+        };  
         return (
         <div>
             
@@ -87,7 +93,11 @@ export default class Index extends React.Component{
                 right={30} 
                 onTouchTap={() => browserHistory.push('/edit/' + this.props.params.id)}
             />
-            <ButtonRemove bottom={30} right={80} />      
+            <ButtonRemove 
+                bottom={30} 
+                right={80} 
+                onTouchTap={() => toastr.confirm('Удалить текущую закупку?', toastrConfirmOptions)}    
+            />      
         </div>
         );
     }

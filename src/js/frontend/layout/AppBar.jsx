@@ -10,7 +10,7 @@ import openInNewTab from '../libs/openInNewTab';
 
 function IconMenuRight(props){
     return (<IconMenu
-        {...props}
+
         iconButtonElement={
         <IconButton><MoreVertIcon /></IconButton>
         }

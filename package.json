@@ -1,6 +1,6 @@
 {
   "name": "purchase",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Закупки для супруги",
   "main": "index.js",
   "scripts": {
