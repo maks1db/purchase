@@ -59,8 +59,13 @@ export default (props) => {
     </TableHeader>
     <TableBody>
         {        
-            props.products.map(x => 
-                (<TableRow key={x.id}>
+            props.products.map((x, i) => 
+                (<TableRow key={x.id}
+                    {...If(!props.disableEdit, 
+                        {selected: props.activeRow && props.activeRow.indexOf(i) >= 0},
+                        {}
+                    )}                          
+                    >
                     <TableRowColumn>{x.product}</TableRowColumn>
                     <TableRowColumn>{x.count}</TableRowColumn>
                     <TableRowColumn>{x.unit}</TableRowColumn>

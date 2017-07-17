@@ -112,6 +112,7 @@ export default class Component extends React.Component {
                                 openOnFocus={true}
                                 dataSource={this.props.fillData.office}
                                 {...Bind.byName('office', event)}
+                                searchText={this.state.office}
                                 onUpdateInput={(office)=> this.setState({office}, event)}
                             />   
                         </Left>
