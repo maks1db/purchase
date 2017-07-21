@@ -36,7 +36,7 @@ export default class Index extends React.Component{
     componentWillMount(){
         this.props.setTitle('Активные закупки');
 
-        api.get('purchase', {query: ['finished = 0'], sort: {paid: false, planDate: false, title: true }}).then(res =>{
+        api.get('purchase', {query: ['finished = 0'], sort: {paid: false, planDate: true, title: true }}).then(res =>{
             this.setState({purchases: res.data});
         });
     }
