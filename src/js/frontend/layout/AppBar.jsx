@@ -1,12 +1,12 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import ClassName from '../directives/ClassName';
+import ClassName from 'directives/ClassName';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import If from '../directives/if';
-import openInNewTab from '../libs/openInNewTab';
+import If from 'directives/if';
+import openInNewTab from 'libs/openInNewTab';
 
 function IconMenuRight(props){
     return (<IconMenu

@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_PREFIX = location.port === '8000' ? '' : 'http://localhost:8000';
+let API_PREFIX = '';
+if (process.env.BROWSER){
+    API_PREFIX = location.port === '8000' ? '' : 'http://localhost:8000';
+}
 
 const put = (collection, data) => {
     return axios.put(`${API_PREFIX}/api/${collection}/item`, data);

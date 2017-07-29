@@ -1,6 +1,6 @@
 {
   "name": "purchase",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "description": "Закупки для супруги",
   "main": "index.js",
   "scripts": {
@@ -34,6 +34,7 @@
     "redux": "^3.7.0",
     "redux-thunk": "^2.2.0",
     "snake-case": "2.1.0",
+    "redux-promise": "^0.5.3",
     "squel": "5.10.0",
     "vk-io": "3.1.7",
     "ejs": "~2.5.6",

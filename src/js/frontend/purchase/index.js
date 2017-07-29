@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setTitle, titleHref } from '../actions';
-import ButtonChange from '../activeButtonsComponents/Change.jsx';
-import ButtonRemove from '../activeButtonsComponents/Remove.jsx'
-import ButtonAccBox from '../activeButtonsComponents/AccBox.jsx';
-import ButtonShopCart from '../activeButtonsComponents/ShopCart.jsx'
-import If from '../directives/if';
+import ButtonChange from 'activeButtons/Change.jsx';
+import ButtonRemove from 'activeButtons/Remove.jsx'
+import ButtonAccBox from 'activeButtons/AccBox.jsx';
+import ButtonShopCart from 'activeButtons/ShopCart.jsx'
+import If from 'directives/if';
 import {browserHistory} from 'react-router';
 import api from '../api';
 import Header from './Header.jsx';

@@ -1,5 +1,5 @@
 import React from 'react';
-import ClassName from '../directives/ClassName';
+import ClassName from 'directives/ClassName';
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-import dateToString from '../libs/dateToString';
+import dateToString from 'libs/dateToString';
 
 export default (props) => (
   

@@ -1,7 +1,7 @@
 import React from 'react';
-import Add from '../activeButtonsComponents/Add.jsx';
-import Change from '../activeButtonsComponents/Change.jsx';
-import Remove from '../activeButtonsComponents/Remove.jsx';
+import Add from 'activeButtons/Add.jsx';
+import Change from 'activeButtons/Change.jsx';
+import Remove from 'activeButtons/Remove.jsx';
 import {
     Table,
     TableBody,
@@ -10,8 +10,8 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import If from '../directives/if';
-import ClassName from '../directives/ClassName';
+import If from 'directives/if';
+import ClassName from 'directives/ClassName';
 import constants from './constants';
 
 const BtnPack = (props) => (

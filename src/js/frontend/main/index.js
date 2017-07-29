@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setTitle, setRowState } from '../actions';
 import Table from './TableComponent.jsx';
-import ButtonAdd from '../activeButtonsComponents/Add.jsx';
-import ButtonChange from '../activeButtonsComponents/Change.jsx';
-import ButtonRemove from '../activeButtonsComponents/Remove.jsx'
-import If from '../directives/if';
+import ButtonAdd from 'activeButtons/Add.jsx';
+import ButtonChange from 'activeButtons/Change.jsx';
+import ButtonRemove from 'activeButtons/Remove.jsx'
+import If from 'directives/if';
 import {browserHistory} from 'react-router';
 import api from '../api';
 

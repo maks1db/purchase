@@ -2,7 +2,10 @@ import React from 'react';
 import AppBar from './AppBar.jsx';
 import Menu from './Menu.jsx';
 import Content from './Content.jsx';
-import './layout.scss';
+
+if (process.env.BROWSER){
+    require('./layout.scss');
+}
 
 export default (props) => (
 <div>

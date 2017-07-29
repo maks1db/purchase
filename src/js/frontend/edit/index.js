@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setTitle, setPaperDepth, setSum } from '../actions';
-import If from '../directives/if';
-import Save from '../activeButtonsComponents/Save.jsx';
-import Total from '../activeButtonsComponents/ShopCart.jsx';
+import If from 'directives/if';
+import Save from 'activeButtons/Save.jsx';
+import Total from 'activeButtons/ShopCart.jsx';
 import Header from './HeaderComponent.jsx';
 import Table from './TableComponent.jsx';
 import constants from './constants';

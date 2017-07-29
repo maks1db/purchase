@@ -1,8 +1,8 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import dateToString from '../libs/dateToString';
-import If from '../directives/if';
-import openInNewTab from '../libs/openInNewTab';
+import dateToString from 'libs/dateToString';
+import If from 'directives/if';
+import openInNewTab from 'libs/openInNewTab';
 const style ={
     position: 'absolute',
     width: '170px',

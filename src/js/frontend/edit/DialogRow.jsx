@@ -3,8 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import constants from './constants';
 import TextField from 'material-ui/TextField';
-import bind from '../directives/bind';
-import If from '../directives/if';
+import bind from 'directives/bind';
+import If from 'directives/if';
 import AutoComplete from 'material-ui/AutoComplete';
 
 const Text = (props) => (

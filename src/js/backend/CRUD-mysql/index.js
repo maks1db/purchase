@@ -2,7 +2,7 @@ let squel = require('squel');
 const connector = require('../database/connector');
 const camelcase = require('camelcase');
 const snakecase = require('snake-case');
-const dateToString = require('../../frontend/libs/dateToString');
+const dateToString = require('../../common/libs/dateToString');
 
 function toMySqlString(opt, key, item){
     

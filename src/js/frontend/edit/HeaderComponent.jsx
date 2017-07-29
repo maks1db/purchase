@@ -3,8 +3,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
-import dateToString from '../libs/dateToString';
-import bind from '../directives/bind';
+import dateToString from 'libs/dateToString';
+import bind from 'directives/bind';
 import constants from './constants';
 import AutoComplete from 'material-ui/AutoComplete';
 

@@ -1,11 +1,21 @@
-const express       = require('express');       
-const app           = express();                 
-const bodyParser    = require('body-parser');
-const path          = require('path');
-const CRUD          = require('./src/js/backend/CRUD-mysql');
-const VK            = require('./src/js/backend/custom-api/vk');
-const fill          = require('./src/js/backend/custom-api/fill');
-const config        = require('./package.json');
+import express from 'express';                      
+import bodyParser from 'body-parser';
+import path from 'path';
+import CRUD from './src/js/backend/CRUD-mysql';
+import VK from './src/js/backend/custom-api/vk';
+import fill from './src/js/backend/custom-api/fill';
+import config from './package.json';
+
+// import React from 'react';
+// import { renderToString } from 'react-dom/server';
+// import { Router, RouterContext, match } from 'react-router';
+// import routes from './src/js/frontend/routes';
+// import { applyMiddleware, createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import promiseMiddleware from 'redux-promise';
+// import reducer from './src/js/frontend/reducers';
+
+const app = express();  
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
