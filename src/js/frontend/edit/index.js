@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setTitle, setPaperDepth, setSum } from '../actions';
-import If from '../directives/if';
-import Save from '../activeButtonsComponents/Save.jsx';
-import Total from '../activeButtonsComponents/ShopCart.jsx';
+import If from 'directives/if';
+import Save from 'activeButtons/Save.jsx';
+import Total from 'activeButtons/ShopCart.jsx';
 import Header from './HeaderComponent.jsx';
 import Table from './TableComponent.jsx';
 import constants from './constants';
@@ -52,6 +52,12 @@ export default class Index extends React.Component{
         switch (type){
             case constants.save:
                 let h = {...this.state.header};
+                if (h.finished && !h.date){
+                    h.date = new Date();
+                    this.setState({
+                        header: h
+                    })
+                }
                 let sum = this.props.sum;
                 if (h.date){
                     h.date = h.date.valueOf() < 0 ? 0 : h.date.valueOf();
@@ -67,12 +73,13 @@ export default class Index extends React.Component{
                     let base = [...this.state.products];
                     
                     base.forEach(x => {
-                        x.purchaseId = id;
-                        delete x.id;
-                        delete x.sum;
-                        delete x.itNew;
+                        let row = Object.assign({}, x);
+                        row.purchaseId = id;
+                        delete row.id;
+                        delete row.sum;
+                        delete row.itNew;
 
-                        p.push(api.put('product', x))
+                        p.push(api.put('product', row))
                     })
                     return Promise.all(p);
                 }
@@ -150,7 +157,7 @@ export default class Index extends React.Component{
                 }
                 else{
                     value.id = new Date().valueOf();
-                    products = [...this.state.products];
+                    products = [ ...this.state.products];
                     products.push(value);
                     
                 }

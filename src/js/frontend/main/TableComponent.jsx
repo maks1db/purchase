@@ -1,5 +1,5 @@
 import React from 'react';
-import ClassName from '../directives/ClassName';
+import ClassName from 'directives/ClassName';
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-import dateToString from '../libs/dateToString';
+import dateToString from 'libs/dateToString';
 
 export default (props) => (
   
@@ -28,7 +28,7 @@ export default (props) => (
                 (<TableRow {...ClassName({pointer: true, paid: x.paid})} key={x.id}>
                     <TableRowColumn>{x.title}</TableRowColumn>
                     <TableRowColumn>{x.office}</TableRowColumn>
-                    <TableRowColumn>{x.planDate ? dateToString(x.planDate, 'date') : ''}</TableRowColumn>
+                    <TableRowColumn>{(x.finished ? x.date : x.planDate) ? dateToString(x.finished ? x.date : x.planDate, 'date') : ''}</TableRowColumn>
                     <TableRowColumn>{x.sum}</TableRowColumn>
                 </TableRow>)
             )        

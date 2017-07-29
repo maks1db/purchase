@@ -13,7 +13,7 @@ const items = [{
     sum: 3000  
 }];
 
-describe.only('containers', () => {
+describe('containers', () => {
     describe('Main container', () => {
         it('should render', () => {
             const wrapper = mount(

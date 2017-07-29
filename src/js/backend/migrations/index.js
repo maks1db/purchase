@@ -1,6 +1,6 @@
 const actualVersion = require('./version');
 const list = require('./migration-list');
-const dateToString = require('../../frontend/libs/dateToString');
+const dateToString = require('../../common/libs/dateToString');
 let squel = require('squel');
 const connector = require('../database/connector');
 const db = new connector();

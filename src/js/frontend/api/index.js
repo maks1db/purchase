@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_PREFIX = location.port === '8000' ? '' : 'http://localhost:8000';
+let API_PREFIX = '';
+if (process.env.BROWSER){
+    API_PREFIX = location.port === '8000' ? '' : 'http://localhost:8000';
+}
 
 const put = (collection, data) => {
     return axios.put(`${API_PREFIX}/api/${collection}/item`, data);
@@ -9,6 +12,10 @@ const put = (collection, data) => {
 const update = (collection, id, data) => {
     return axios.post(`${API_PREFIX}/api/${collection}/item/${id}`, data);
 };
+
+const del = (collection, id) => {
+    return axios.delete(`${API_PREFIX}/api/${collection}/item/${id}`);
+}; 
 
 const get = (collection, options = {}) => {
 
@@ -44,5 +51,6 @@ export default {
     get, 
     getItem,
     vk,
-    fill
+    fill,
+    delete: del
 };

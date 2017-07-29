@@ -6,7 +6,15 @@ const isDevelopment = NODE_ENV === 'development';
 const suffix = isDevelopment? '?sourceMap' : '';
 
 const webpack = require('webpack');
-const plugins = [];
+
+
+const plugins = [
+    new webpack.DefinePlugin({
+        'process.env': {
+            BROWSER: JSON.stringify(true)
+        }
+    }),
+];
 if (!isDevelopment){
     // plugins.push(new webpack.LoaderOptionsPlugin({
     //     debug: true
@@ -29,6 +37,13 @@ module.exports = {
     devtool: isDevelopment && 'inline-source-map',
     devServer: {
         historyApiFallback: true
+    },
+    resolve: {
+        modules: [
+            'node_modules',
+            path.resolve(__dirname, 'src/js/frontend/components/'),
+            path.resolve(__dirname, 'src/js/common/')
+        ]
     },
     module: {
         loaders: [{

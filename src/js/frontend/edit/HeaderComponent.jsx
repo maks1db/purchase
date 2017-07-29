@@ -3,8 +3,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
-import dateToString from '../libs/dateToString';
-import bind from '../directives/bind';
+import dateToString from 'libs/dateToString';
+import bind from 'directives/bind';
 import constants from './constants';
 import AutoComplete from 'material-ui/AutoComplete';
 
@@ -33,7 +33,7 @@ const Right = (props) => (
         {props.children} 
     </div>
 );
-const Date = (props) => (
+const DateComponent = (props) => (
     <DatePicker 
         autoOk={true}
         formatDate={date => dateToString(date, 'date')} 
@@ -66,7 +66,11 @@ export default class Component extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({...nextProps.header});
+        let h = nextProps.header;
+        if (typeof(h.date) === 'number' ){
+            h.date = new Date(h.date);
+        }
+        this.setState({...h});
     }
 
     render(){
@@ -108,6 +112,7 @@ export default class Component extends React.Component {
                                 openOnFocus={true}
                                 dataSource={this.props.fillData.office}
                                 {...Bind.byName('office', event)}
+                                searchText={this.state.office}
                                 onUpdateInput={(office)=> this.setState({office}, event)}
                             />   
                         </Left>
@@ -181,13 +186,13 @@ export default class Component extends React.Component {
         <Tab label="Периоды">
             <TableGroup>
                 <Left>
-                    <Date 
+                    <DateComponent 
                     title="Дата доставки (плановая)"
                     {...Bind.byName('planDate', event)}
                     />   
                 </Left>
                 <Right>
-                    <Date 
+                    <DateComponent 
                     title="Дата доставки"
                     {...Bind.byName('date', event)}
                     />

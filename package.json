@@ -1,18 +1,18 @@
 {
   "name": "purchase",
-  "version": "0.9.3",
+  "version": "0.9.11",
   "description": "Закупки для супруги",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --content-base public --debug --hot --output-pathinfo --watch --inline --port 8090",
     "build": "NODE_ENV=production webpack -p",
-    "dev": "NODE_ENV=dev node app.js",
+    "dev": "NODE_ENV=dev node index.js",
     "devinit": "NODE_ENV=dev node src/js/backend/database/init.js",
     "testCRUD": "NODE_ENV=dev mocha ./src/js/backend/tests/crud.js",
     "devdbinit": "NODE_ENV=dev node src/js/backend/database/initdb.js",
     "dbinit": "node src/js/backend/database/initdb.js",
     "init": "node src/js/backend/database/init.js",
-    "prod": "NODE_ENV=dev node app.js",
+    "prod": "node index.js",
     "testfront": "mocha --require ./src/js/frontend/test/helpers/setup.js --compilers js:babel-core/register ./src/js/frontend/**/test/*.test.js"
   },
   "dependencies": {
@@ -34,8 +34,11 @@
     "redux": "^3.7.0",
     "redux-thunk": "^2.2.0",
     "snake-case": "2.1.0",
+    "redux-promise": "^0.5.3",
     "squel": "5.10.0",
-    "vk-io": "3.1.7"
+    "vk-io": "3.1.7",
+    "ejs": "~2.5.6",
+    "babel-register": "^6.24.1"
   },
   "devDependencies": {
     "babel": "~6.5.2",

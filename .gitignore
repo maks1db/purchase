@@ -1,2 +1,4 @@
 node_modules
 src/js/backend/config/config.dev.json
+public/assets/js/index.js
+package-lock.json

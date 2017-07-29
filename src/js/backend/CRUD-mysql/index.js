@@ -2,14 +2,14 @@ let squel = require('squel');
 const connector = require('../database/connector');
 const camelcase = require('camelcase');
 const snakecase = require('snake-case');
-const dateToString = require('../../frontend/libs/dateToString');
+const dateToString = require('../../common/libs/dateToString');
 
 function toMySqlString(opt, key, item){
     
     if (!opt) return item;
     if ('dateColumns' in opt){
         if (opt.dateColumns.indexOf(key) >= 0){            
-            if (item === 0){
+            if (!item){
                 return null;
             }
             return dateToString(new Date(item), 'dateTime', '-');
@@ -122,12 +122,24 @@ class CRUD {
         .from(this.table)
         .where(`id = ${id}`);
 
-        db.query(q.toString())
-        .then(result => {
-            res.json({result: result.affectedRows === 1});
-            db.close();
+        new Promise((resolve) => {
+            if ('onDeleteQuery' in this.options){
+                db.query(this.options.onDeleteQuery(id, squel))
+                .then((result) => {
+                    resolve(true);
+                });
+            }
+            else{
+                resolve(true);
+            }
+        })
+        .then(() => {
+            db.query(q.toString())
+            .then(result => {
+                res.json({result: result.affectedRows === 1});
+                db.close();
+            });
         });
-
     }
 
     post(req, res){
