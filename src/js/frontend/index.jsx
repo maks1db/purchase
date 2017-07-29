@@ -5,12 +5,15 @@ import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReduxToastr from 'react-redux-toastr';
 import Routes from './routes';
-import store from './store';
+import configureStore from './store';
 
 if (process.env.BROWSER){
     require('../../scss/index.scss');
-    require('react-redux-toastr/src/styles/index.scss')
+    require('react-redux-toastr/src/styles/index.scss');
 }
+
+const initialState = window.__INITIAL_STATE__ || {};
+const store = configureStore(initialState);
 
 class App extends React.Component{
     constructor(){

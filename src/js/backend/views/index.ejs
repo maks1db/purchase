@@ -7,5 +7,9 @@
     <script async src="/assets/js/index.js?v<%= version %>"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
-<body><div id="root"></div></body>
+<body><div id="root"><%= contentHTML %></div></body>
+<% var scriptVar = JSON.stringify(state); %>
+<script type="application/javascript">
+    window.__INITIAL_STATE__ = scriptVar;
+</script>
 </html>
