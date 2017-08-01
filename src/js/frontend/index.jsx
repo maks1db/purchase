@@ -4,8 +4,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReduxToastr from 'react-redux-toastr';
-import Routes from './routes';
+import Routes from './routes.jsx';
 import configureStore from './store';
+import {Router, browserHistory } from 'react-router';
 
 if (process.env.BROWSER){
     require('../../scss/index.scss');
@@ -26,7 +27,7 @@ class App extends React.Component{
             <Provider store={store}>
                 <div>
                     <MuiThemeProvider> 
-                        <Routes />                           
+                        <Router children={Routes} history={browserHistory} />                           
                     </MuiThemeProvider>
                     <ReduxToastr
                         timeOut={4000}

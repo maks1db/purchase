@@ -55,7 +55,9 @@
                 "NODE_ENV":"dev"
             },
             "name": "Launch Program",
-            "program": "${workspaceRoot}/app.js"
+            "program": "${workspaceRoot}/index.js",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/babel-cli/bin/babel-node.js",
+            "sourceMaps": true
         },
         {
             "type": "node",
