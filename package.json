@@ -1,6 +1,6 @@
 {
   "name": "purchase",
-  "version": "0.9.11",
+  "version": "0.9.13",
   "description": "Закупки для супруги",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,14 @@
     "init": "node src/js/backend/database/init.js",
     "prod": "node index.js",
     "testfront": "mocha --require ./src/js/frontend/test/helpers/setup.js --compilers js:babel-core/register ./src/js/frontend/**/test/*.test.js"
+  },
+  "_moduleAliases": {
+    "directives": "./src/js/common/directives",
+    "libs": "./src/js/common/libs",
+    "activeButtons": "./src/js/frontend/components/activeButtons",
+    "frontend": "./src/js/frontend",
+    "backend": "./src/js/backend",
+    "root": "./"
   },
   "dependencies": {
     "array-sort": "^0.1.2",
@@ -38,10 +46,12 @@
     "squel": "5.10.0",
     "vk-io": "3.1.7",
     "ejs": "~2.5.6",
-    "babel-register": "^6.24.1"
+    "babel-register": "^6.24.1",
+    "module-alias": "^2.0.1"
   },
   "devDependencies": {
     "babel": "~6.5.2",
+    "babel-cli": "~6.24.1",
     "babel-core": "~6.22.1",
     "babel-loader": "~6.2.10",
     "babel-preset-react": "6.22.0",

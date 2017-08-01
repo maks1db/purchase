@@ -8,6 +8,7 @@ import ButtonRemove from 'activeButtons/Remove.jsx'
 import If from 'directives/if';
 import {browserHistory} from 'react-router';
 import api from '../api';
+import arraySort from 'array-sort';
 
 function mapStateToProps(state){
     return {
@@ -25,7 +26,7 @@ function mapDispatchToProps(dispatch){
 export default class Index extends React.Component{
     constructor(){
         
-        document.title = "Активные закупки";
+        document.title = 'Активные закупки';
         super();
 
         this.state = {
@@ -35,9 +36,18 @@ export default class Index extends React.Component{
 
     componentWillMount(){
         this.props.setTitle('Активные закупки');
+        function prepareArray(arr){
+            let modifyArr = arr.map(x => {
 
+                x.dateExists = x.date !== null || x.planDate !== null;
+                x.date = x.date ? x.date : x.planDate;
+                return x;
+            });
+            return arraySort(arraySort(modifyArr, 'date'), ['paid', 'dateExists'], {reverse: true});
+        }
+        
         api.get('purchase', {query: ['finished = 0'], sort: {paid: false, planDate: true, title: true }}).then(res =>{
-            this.setState({purchases: res.data});
+            this.setState({purchases: prepareArray(res.data)});
         });
     }
 
